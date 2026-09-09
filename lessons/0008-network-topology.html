@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0008 — 網路拓樸：打造穩定的連接網</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>0008 — 網路拓樸：打造穩定的連接網</h1>
+<p><strong>對應模組</strong>: Module 4 — 網路基礎知識<br>
+<strong>預計時間</strong>: 20 分鐘</p>
+
+<div class="analogy">
+想像你在佈置一間<strong>「大型展覽會」</strong>的通訊線路：<br><br>
+如果你讓所有人排成一排，一個人傳給下一個人，只要中間有人打瞌睡，後面的全部收不到訊息 $\rightarrow$ 這是<strong>總線/環狀</strong>。<br><br>
+如果你讓所有人全部連到中間的一個超級控制台，只要控制台在，大家都能溝通 $\rightarrow$ 這是<strong>星狀</strong>。<br><br>
+如果你讓每個人都跟其他所有人連一條線，就算一半的線斷了，大家依然能找到路徑傳訊息 $\rightarrow$ 這是<strong>網狀</strong>。
+</div>
+
+<h2>1. 常見的網路拓樸結構</h2>
+<p>拓樸 (Topology) 就是指設備之間物理連接的「形狀」。不同的形狀決定了網路的穩定度與成本：</p>
+
+<table>
+<thead><tr><th>拓樸類型</th><th>結構特徵</th><th>優點</th><th>缺點</th></tr></thead>
+<tbody>
+<tr><td><strong>星狀 (Star)</strong></td><td>所有設備連到中心 Switch</td><td>管理簡單、單機損壞不影響他人</td><td>中心 Switch 壞了 $\rightarrow$ 全網癱瘓</td></tr>
+<tr><td><strong>環狀 (Ring)</strong></td><td>設備環環相扣，形成一個圈</td><td>傳輸路徑固定，不會碰撞</td><td>其中一環斷掉 $\rightarrow$ 整圈中斷</td></tr>
+<tr><td><strong>網狀 (Mesh)</strong></td><td>設備之間多重互連</td><td><strong>極高可靠性</strong>，有多條路徑</td><td>線路極多，成本極高，配置複雜</td></tr>
+<tr><td><strong>總線狀 (Bus)</strong></td><td>所有設備共用一條主幹線</td><td>線路最少，安裝極快</td><td>主幹斷裂 $\rightarrow$ 全網崩潰</td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<strong>現實世界的真相</strong>: 現代絕大多數的辦公室 LAN 都是 <strong>「星狀拓樸」</strong>（每台電腦連到 Switch）。而核心骨幹網（如電信商的機房）則會使用 <strong>「部分網狀拓樸」</strong> 以確保絕對不會斷線。
+</div>
+
+<h2>2. 致命傷：單點故障 (Single Point of Failure)</h2>
+<p>在設計網路時，工程師最害怕的就是 <strong>「單點故障 (SPOF)」</strong>。</p>
+<p>想像你的星狀網路中，那個中心 Switch 就是單點故障。如果它突然燒掉了，即便你有 100 台頂級伺服器，它們也無法溝通。這就是為什麼在上一課我們提到伺服器需要「備援」，而在網路層級，我們需要 <strong>「冗餘 (Redundancy)」</strong>。</p>
+
+<h2>3. 如何解決？ $\rightarrow$ 引入冗餘 (Redundancy)</h2>
+<p>為了避免 SPOF，我們會採取以下策略：</p>
+<ul>
+  <li><strong>雙上行 (Dual-homing)</strong>：一台伺服器插兩條線到兩個不同的 Switch。</li>
+  <li><strong>網狀連接</strong>：Switch 之間互相連接，如果一條線斷了，資料會自動繞路。</li>
+  <li><strong>集群 (Clustering)</strong>：將多台設備組合在一起，像是一台設備在運作。</li>
+</ul>
+
+<div class="self-check">
+<strong>反向驗證時間</strong><br>
+請思考並回答以下問題：
+<ol>
+  <li>如果你的公司預算充足，且要求網路「絕對不能中斷」(Zero Downtime)，你會建議使用哪種拓樸？為什麼？</li>
+  <li>在「星狀拓樸」中，最危險的元件是什麼？如果它壞了會發生什麼事？</li>
+  <li>為什麼我們不在所有地方都使用「全網狀拓樸」來確保安全？(請從成本與管理角度思考)</li>
+</ol>
+把你的答案傳給我。通過後，我們將進入 Module 4 的最終衝刺：<strong>準備進入地獄級難度的 Module 5 (IP 與子網路劃分)</strong>！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0008-network-topology.html">⬅ 上一課</a>
+<a href="0009-binary-basics.html">⬇ 下一課(二進位基礎)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 4 中段<br>
+💬 <strong>導師提醒</strong>: 拓樸決定了網路的「韌性」。理解 SPOF 是從初級網管成長為系統架構師的第一步。
+</small></p>
+
+</body>
+</html>

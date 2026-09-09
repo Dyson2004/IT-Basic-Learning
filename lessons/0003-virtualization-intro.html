@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0003 — 虛擬化：打破硬體的枷鎖</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>0003 — 虛擬化：打破硬體的枷鎖</h1>
+<p><strong>對應模組</strong>: Module 2 — 伺服器、虛擬化與雲端實作準備<br>
+<strong>預計時間</strong>: 20 分鐘</p>
+
+<div class="analogy">
+想像你買了一套<strong>超級巨大的豪華公寓 (實體伺服器)</strong>，有 10 個房間，但你只有一個人住，這太浪費了。<br><br>
+<strong>虛擬化 (Virtualization)</strong> 就像是你在公寓裡安裝了<strong>「活動隔板」</strong>。你把這套大公寓切分成 5 個獨立的小套房，每個小套房都有自己的門鎖、電表和水錶。雖然他們共用同一個建築物（硬體），但住在 A 套房的人完全不知道 B 套房的存在，彼此互不干擾。
+</div>
+
+<h2>虛擬化的核心：Hypervisor (虛擬化管理程序)</h2>
+<p>在電腦世界裡，這個負責「安裝隔板」並管理資源的管家叫做 <strong>Hypervisor</strong>。</p>
+
+<div class="vocab">
+<span class="vocab-term">Hypervisor</span><br>
+<span class="vocab-en">Hypervisor / Virtual Machine Monitor (VMM)</span><br>
+它是一個特殊的軟體層，安裝在實體硬體之上。它的工作是：<strong>欺騙</strong> 上層的作業系統，讓作業系統以為自己獨佔了整台電腦的 CPU 和 RAM。
+</div>
+
+<h2>關鍵術語：Host 與 Guest</h2>
+<p>為了區分誰在管誰，我們使用這兩個詞：</p>
+
+<table>
+<thead><tr><th>術語</th><th>對應角色</th><th>簡單理解</th></tr></thead>
+<tbody>
+<tr><td><strong>Host (宿主機)</strong></td><td>實體伺服器</td><td>提供肉體 (CPU/RAM/Disk) 的那台真實機器。</td></tr>
+<tr><td><strong>Guest (客體機 / 虛擬機)</strong></td><td>VM (Virtual Machine)</td><td>住在 Host 裡面的「虛擬小電腦」。</td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<strong>為什麼要這麼做？</strong><br>
+如果你想測試一個危險的軟體，你不需要買一台新電腦。你只需要在 Host 裡開一個 Guest VM，如果 VM 崩潰了或中了病毒，你只要把這個 VM 刪除就好，<strong>完全不會影響到 Host (實體機) 的安全</strong>。
+</div>
+
+<h2>虛擬化的三大好處</h2>
+<ol>
+  <li><strong>資源最大化 (Efficiency)</strong>：一台 64 核 CPU 的伺服器，可以切成 10 台 6 核的 VM，讓 10 個不同的網站同時運行，不再浪費資源。</li>
+  <li><strong>環境隔離 (Isolation)</strong>：VM A 崩潰了，不會影響到 VM B。這對安全性至關重要。</li>
+  <li><strong>快速部署 (Agility)</strong>：建立一台實體伺服器需要買零件 $\rightarrow$ 組裝 $\rightarrow$ 裝系統 (可能需要 3 天)；建立一個 VM 只需要點擊「建立」 $\rightarrow$ 複製模板 (只需要 3 分鐘)。</li>
+</ol>
+
+<div class="self-check">
+<strong>反向驗證時間</strong><br>
+請試著回答以下問題：
+<ol>
+  <li>Hypervisor 的角色是什麼？為什麼說它在「欺騙」作業系統？</li>
+  <li>如果我在一台 Windows 電腦 (Host) 上安裝了 VMware 或 VirtualBox，並在裡面執行了一個 Ubuntu Linux (Guest)，這中間發生了什麼事？</li>
+  <li>為什麼說虛擬化能提高「安全性」？（請用剛才提到的「隔離」概念解釋）</li>
+</ol>
+把你的答案傳給我，我會為您回饋。通過後，我們將進入 Module 2 的最後一環：<strong>AWS 帳號與雲端實作準備</strong>！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0002-server-concept.html">⬅ 上一課</a>
+<a href="0004-gcp-setup.html">⬇ 下一課(GCP 帳號設定)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 2 前半段<br>
+💬 <strong>導師提醒</strong>: 理解 Hypervisor 是理解所有雲端運算 (AWS/Azure/GCP) 的基石，請務必搞清楚！
+</small></p>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0004 — 準備你的雲端實驗室：AWS 帳號設定</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>0004 — 準備你的雲端實驗室：AWS 帳號設定</h1>
+<p><strong>對應模組</strong>: Module 2 — 伺服器、虛擬化與雲端實作準備<br>
+<strong>預計時間</strong>: 15 分鐘 (含帳號檢查)</p>
+
+<div class="analogy">
+想像你要進入一間<strong>「超級工具租賃店」</strong>。這間店裡有世界上最強的 CPU、最大的 RAM 和最快的網路。你不需要買下這些工具，只需要用信用卡登記一個帳號，就可以在需要時租用一個 CPU 一小時，或者租用一個 1TB 的硬碟一天。
+<br><br>
+<strong>AWS (Amazon Web Services)</strong> 就是這間租賃店。而這堂課的目的，就是確保你的「會員卡」已開通，且你設定了「消費限額」，以免不小心花掉太多錢。
+</div>
+
+<h2>1. AWS 帳號檢查</h2>
+<p>請確認您目前的狀態（選擇其中一項）：</p>
+<ul>
+  <li><strong>情況 A</strong>: 我已有 AWS 帳號，且能正常登入。 $\rightarrow$ <strong>直接跳到步驟 2</strong>。</li>
+  <li><strong>情況 B</strong>: 我很久沒登入了，不確定是否還能使用。 $\rightarrow$ <strong>請嘗試登入 AWS Console</strong>。</li>
+  <li><strong>情況 C</strong>: 我沒有帳號，或者想建立一個全新的學習帳號。 $\rightarrow$ <strong>請至 <a href="https://aws.amazon.com/" target="_blank">aws.amazon.com</a> 註冊</strong>。</li>
+</ul>
+
+<div class="warning">
+<strong>重要提醒</strong>: 註冊 AWS 帳號需要<strong>信用卡</strong>。雖然 AWS 提供 12 個月的「免費等級 (Free Tier)」，但如果超過限額或使用了非免費服務，AWS 會直接從信用卡扣款。
+</div>
+
+<h2>2. 設定預算警報 (Billing Alarm) —— 這是最重要的一步！</h2>
+<p>為了防止「意外扣款」，請務必在進入任何實作前設定預算警報：</p>
+<ol>
+  <li>登入 AWS Console $\rightarrow$ 搜尋 <strong>「Billing」 (帳單)</strong>。</li>
+  <li>進入 <strong>「Budgets」 (預算)</strong> $\rightarrow$ 點擊 <strong>「Create budget」</strong>。</li>
+  <li>選擇 <strong>「Cost budget」 (成本預算)</strong> $\rightarrow$ 設定預算金額為 <strong>\$1.00</strong> (或您能接受的金額)。</li>
+  <li>設定<strong>電子郵件通知</strong>：當實際支出達到 80% 或 100% 時，立即發信通知您。</li>
+</ol>
+<div class="tip">
+<strong>導師建議</strong>: 很多初學者因為忘了刪除建立的 VM (EC2 實例)，導致月底收到驚人的帳單。設定預算警報是每個雲端工程師的「生存本能」。
+</div>
+
+<h2>3. 熟悉控制台 (Management Console)</h2>
+<p>AWS 的控制台就像是一個巨大的工具箱。您可以嘗試搜尋以下服務，看看它們長什麼樣子（暫時不需要操作）：</p>
+<ul>
+  <li><strong>EC2 (Elastic Compute Cloud)</strong>: 我們之後會在這裡建立「虛擬機」。</li>
+  <li><strong>VPC (Virtual Private Cloud)</strong>: 我們之後會在這裡建立「虛擬網路」。</li>
+  <li><strong>S3 (Simple Storage Service)</strong>: 雲端上的「大檔案櫃」。</li>
+</ul>
+
+<div class="self-check">
+<strong>反向驗證時間</strong><br>
+這堂課不需要複雜的理論，只需要確認您的<strong>實作準備度</strong>。請告訴我：
+<ol>
+  <li>您目前的 AWS 帳號狀態（已有 / 剛註冊 / 需幫助）。</li>
+  <li>您是否已經設定好「預算警報」？（如果還沒，請現在就去設定，設定好後再回覆我）。</li>
+  <li>您能從 Console 搜尋到 「EC2」這個服務嗎？</li>
+</ol>
+把您的狀態傳給我，確認準備就緒後，我們正式跨入 <strong>Module 3：資料中心與雲端運算</strong>！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0003-virtualization-intro.html">⬅ 上一課</a>
+<a href="#">⬇ 下一課(待解鎖)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 2 後段<br>
+💬 <strong>導師提醒</strong>: 不要害怕 AWS Console，但請務必敬畏帳單。設定好預算警報後，您可以大膽地嘗試。
+</small></p>
+
+</body>
+</html>

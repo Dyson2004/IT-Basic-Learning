@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0012 — 尋找邊界：跳躍間距與範圍計算</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .range-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-family: monospace; }
+  .range-table th, .range-table td { border: 1px solid var(--border-color); padding: 0.8rem; text-align: center; }
+  .range-table th { background: #f3f4f6; }
+  .highlight-net { background-color: #dbeafe; font-weight: bold; }
+  .highlight-broadcast { background-color: #fee2e2; font-weight: bold; }
+  .calc-step { background: #f9fafb; border-left: 4px solid var(--primary-color); padding: 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<h1>0012 — 尋找邊界：跳躍間距與範圍計算</h1>
+<p><strong>對應模組</strong>: Module 5 — IP 位址與子網路劃分<br>
+<strong>預計時間</strong>: 30 分鐘</p>
+
+<div class="analogy">
+想像你在劃分一條<strong>「長長的街道」</strong>。街道總長 256 公尺，你現在要把這條街平均切成 4 個區塊。<br><br>
+你不需要拿尺去量每一公尺，你只需要知道<strong>「每隔 64 公尺」</strong>就有一塊新區塊的開始：<br>
+- 第一區：0m $\rightarrow$ 63m<br>
+- 第二區：64m $\rightarrow$ 127m<br>
+- 第三區：128m $\rightarrow$ 191m<br>
+- 第四區：192m $\rightarrow$ 255m<br><br>
+在網路中，這個「64」就叫做 <strong>「跳躍間距 (Magic Number)」</strong>。
+</div>
+
+<h2>1. 如何計算跳躍間距 (Magic Number)？</h2>
+<p>跳躍間距就是<strong>一個子網路所佔用的總 IP 數量</strong>（包含不能用的那兩個）。</p>
+
+<div class="calc-step">
+<strong>計算方法：</strong><br>
+公式：$256 - \text{遮罩最後一段的數值}$<br><br>
+以 <code>/26</code> 為例 (遮罩 <code>255.255.255.192</code>)：<br>
+$256 - 192 = \mathbf{64}$ <br>
+<strong>結論</strong>：這個網路每隔 64 個 IP 就會開始一個新子網路。
+</div>
+
+<h2>2. 填寫範圍表格</h2>
+<p>有了跳躍間距 (64)，我們就可以像填空一樣列出所有子網路的範圍：</p>
+
+<table class="range-table">
+<thead>
+<tr>
+<th>子網路</th>
+<th>網路位址 (Network)</th>
+<th>第一個可用 IP</th>
+<th>最後一個可用 IP</th>
+<th>廣播位址 (Broadcast)</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Subnet 1</td>
+<td class="highlight-net">.0</td>
+<td>.1</td>
+<td>.62</td>
+<td class="highlight-broadcast">.63</td>
+</tr>
+<tr><td>Subnet 2</td>
+<td class="highlight-net">.64</td>
+<td>.65</td>
+<td>.126</td>
+<td class="highlight-broadcast">.127</td>
+</tr>
+<tr><td>Subnet 3</td>
+<td class="highlight-net">.128</td>
+<td>.129</td>
+<td>.190</td>
+<td class="highlight-broadcast">.191</td>
+</tr>
+<tr><td>Subnet 4</td>
+<td class="highlight-net">.192</td>
+<td>.193</td>
+<td>.254</td>
+<td class="highlight-broadcast">.255</td>
+</tr>
+</tbody>
+</table>
+
+<div class="tip">
+<strong>快速檢查法</strong>：<br>
+- <strong>網路位址</strong>：永遠是該區塊的第一個數。<br>
+- <strong>廣播位址</strong>：永遠是下一個子網路位址的 <strong>-1</strong> (例如 64 - 1 = 63)。<br>
+- <strong>可用 IP</strong>：夾在中間的範圍。
+</div>
+
+<h2>3. 實戰案例：找出特定的 IP 屬於哪個網路？</h2>
+<p>如果有人給你一個 IP <code>192.168.1.100/26</code>，你要如何判斷它在哪個子網路？</p>
+<ol>
+  <li>找出跳躍間距 $\rightarrow$ 64。</li>
+  <li>列出起始點 $\rightarrow$ .0, .64, .128, .192。</li>
+  <li>比對 <code>.100</code> $\rightarrow$ 它在 <code>.64</code> 之後，但在 <code>.128</code> 之前。</li>
+  <li><strong>結論</strong>：它屬於 <strong>Subnet 2</strong> (範圍 .64 $\rightarrow$ .127)。</li>
+</ol>
+
+<div class="self-check">
+<strong>反向驗證時間 (最終魔王挑戰)</strong><br>
+假設你有一個網路 <code>192.168.1.0/27</code> (遮罩 <code>255.255.255.224</code>)：
+<ol>
+  <li>請算出它的<strong>跳躍間距 (Magic Number)</strong> 是多少？</li>
+  <li>請列出 <strong>Subnet 2</strong> (第二個子網路) 的 <strong>網路位址</strong> 與 <strong>廣播位址</strong>。</li>
+  <li>如果一台電腦的 IP 是 <code>192.168.1.40</code>，它屬於第幾個子網路？</li>
+</ol>
+<strong>這是我為您設計的 Module 5 最終考卷。</strong> 請慢慢計算，如果通過，我們將正式結束最艱難的模組，進入 Module 6：路由與 VPC！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0012-subnet-range-calculation.html">⬅ 上一課</a>
+<a href="0013-routing-and-vpc.html">⬇ 下一課(路由與 VPC)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 5 後段<br>
+💬 <strong>導師提醒</strong>: 只要掌握了「跳躍間距」和「-1」的邏輯，你就不再需要死背二進位表格。
+</small></p>
+
+</body>
+</html>

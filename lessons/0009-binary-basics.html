@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0009 — IP 的語言：二進位與十進位</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .binary-table { width: 100%; border-collapse: collapse; margin: 1rem 0; text-align: center; }
+  .binary-table th, .binary-table td { border: 1px solid var(--border-color); padding: 0.5rem; }
+  .highlight-bit { background-color: #dbeafe; font-weight: bold; color: var(--primary-color); }
+  .calc-box { background: #f9fafb; border: 1px dashed var(--border-color); padding: 1rem; border-radius: 8px; margin: 1rem 0; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<h1>0009 — IP 的語言：二進位與十進位</h1>
+<p><strong>對應模組</strong>: Module 5 — IP 位址與子網路劃分<br>
+<strong>預計時間</strong>: 30 分鐘 (請放慢速度)</p>
+
+<div class="analogy">
+想像你在跟一個<strong>「只能眨眼」</strong>的外星人溝通：<br><br>
+他不能說話，只能透過「眨眼 (1)」或「不眨眼 (0)」來傳遞訊息。如果你想告訴他數字「3」，你不能直接說「三」，你必須設計一套規則，例如：眨一次眼代表 2，眨一次眼代表 1，兩次眨眼加起來就是 3。<br><br>
+電腦就是這個外星人。它的 CPU 和記憶體本質上是數以億計的微小開關。因此，無論你的 IP 位址看起來像 <code>192.168.1.1</code>，在電腦眼中，它其實是一串長長的 <strong>0 和 1</strong>。
+</div>
+
+<h2>1. 什麼是二進位 (Binary)？</h2>
+<p>我們人類使用 <strong>十進位 (Decimal)</strong>，因為我們有 10 根手指。而電腦使用 <strong>二進位 (Binary)</strong>，因為電路只有兩種狀態：<strong>開 (On/1)</strong> 或 <strong>關 (Off/0)</strong>。</p>
+<ul>
+  <li><strong>Bit (位元)</strong>: 二進位的最小單位。一個 Bit 只能是 0 或 1。</li>
+  <li><strong>Byte (字節)</strong>: 8 個 Bit 組合成一個 Byte。</li>
+</ul>
+
+<h2>2. 核心技能：二進位 $\leftrightarrow$ 十進位轉換</h2>
+<p>要理解 IP 位址，你必須先掌握這個「權值表」。一個 Byte (8 bits) 的權值如下：</p>
+
+<table class="binary-table">
+<thead>
+<tr><th>Bit 位置</th><th>1</th><th>2</th><th>3</th><th>4</th><th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+</thead>
+<tbody>
+<tr><th>權值 (2的次方)</th><th>128</th><th>64</th><th>32</th><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><th>二進位狀態</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+</tbody>
+</table>
+
+<div class="calc-box">
+<strong>計算範例：上面的二進位 <code>01001010</code> 是多少？</strong><br>
+方法：將狀態為 「1」 的權值全部加起來 $\rightarrow$<br>
+(0 $\times$ 128) + (<strong>1 $\times$ 64</strong>) + (0 $\times$ 32) + (0 $\times$ 16) + (<strong>1 $\times$ 8</strong>) + (0 $\times$ 4) + (<strong>1 $\times$ 2</strong>) + (0 $\times$ 1) = <br>
+<strong>64 + 8 + 2 = 74</strong>
+</div>
+
+<h2>3. 為什麼 IP 位址要這樣設計？</h2>
+<p>一個 IPv4 位址是由 4 個部分組成（稱為 Octet，八位組），每個部分都是 8 個 bits。</p>
+<p>例如 <code>192.168.1.1</code>：<br>
+- <strong>192</strong> $\rightarrow$ <code>11000000</code> (128 + 64)<br>
+- <strong>168</strong> $\rightarrow$ <code>10101000</code> (128 + 32 + 8)<br>
+- <strong>1</strong> $\rightarrow$ <code>00000001</code> (1)<br>
+- <strong>1</strong> $\rightarrow$ <code>00000001</code> (1)</p>
+
+<div class="warning">
+<strong>導師提醒</strong>: 不要試圖死背 IP 轉換表！請練習上面的「權值相加法」。這是後續學習「子網路劃分 (Subnetting)」的唯一基礎，如果這裡不熟，後面會非常痛苦。
+</div>
+
+<div class="self-check">
+<strong>反向驗證時間 (數學挑戰)</strong><br>
+請嘗試計算並回答以下問題（請寫出你的計算過程）：
+<ol>
+  <li>二進位 <code>10000000</code> 轉換成十進位是多少？</li>
+  <li>十進位 <code>130</code> 轉換成二進位是什麼？ (提示：從最大權值 128 開始扣)</li>
+  <li>二進位 <code>00001111</code> 轉換成十進位是多少？</li>
+</ol>
+把你的答案傳給我。如果計算正確，我就知道你已經準備好進入 <strong>「子網路劃分」</strong> 的大魔王關卡了！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0009-binary-basics.html">⬅ 上一課</a>
+<a href="0010-ip-and-subnet-mask.html">⬇ 下一課(IP 與遮罩)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 5 前段<br>
+💬 <strong>導師提醒</strong>: 不要害怕出錯，計算過程比答案重要。如果你覺得困難，請告訴我，我會給你更多練習題。
+</small></p>
+
+</body>
+</html>

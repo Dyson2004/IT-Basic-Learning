@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0005 — 從地端到雲端：商業邏輯的革命</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>0005 — 從地端到雲端：商業邏輯的革命</h1>
+<p><strong>對應模組</strong>: Module 3 — 資料中心與雲端運算<br>
+<strong>預計時間</strong>: 20 分鐘</p>
+
+<div class="analogy">
+想像你要在公司提供<strong>「電力」</strong>：<br><br>
+<strong>地端 (On-premises)</strong> 就像是你在公司後院<strong>自己蓋一座發電廠</strong>。你需要買發電機、聘請工程師維護、處理冷卻系統。無論你今天是用 1 盞燈還是 100 盞燈，發電廠的建設成本已經花掉了，而且如果發電機壞了，全公司斷電。<br><br>
+<strong>雲端 (Cloud)</strong> 就像是直接<strong>連接到城市的電網</strong>。你不需要知道發電廠在哪，也不需要維護它。你只需要插上插頭，根據每個月的電表單（使用量）付錢。如果你需要更多電，電網會自動提供，你不需要自己去買新的發電機。
+</div>
+
+<h2>1. 錢怎麼花？CapEx vs. OpEx</h2>
+<p>這是 IT 決策中最核心的財務概念。雲端運算將 IT 支出從「買資產」變成了「付月費」。</p>
+
+<table>
+<thead><tr><th>術語</th><th>全稱</th><th>特性</th><th>類比</th></tr></thead>
+<tbody>
+<tr><td><strong>CapEx</strong></td><td>Capital Expenditure<br>(資本支出)</td><td>一次性投入大筆資金買硬體。折舊慢，風險高。</td><td>買一輛車</td></tr>
+<tr><td><strong>OpEx</strong></td><td>Operational Expenditure<br>(營運支出)</td><td>按使用量支付，隨時可調整規模。靈活，風險低。</td><td>叫 Uber / 租車</td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<strong>關鍵洞察</strong>: 雲端運算最大的魔力在於將 <strong>CapEx $\rightarrow$ OpEx</strong>。對於新創公司來說，這意味著他們不需要籌集數百萬美元買伺服器，只要有信用卡，就能擁有和 Google 一樣強大的基礎設施。
+</div>
+
+<h2>2. 雲端服務的三大模型 (IaaS, PaaS, SaaS)</h2>
+<p>雲端服務並非只有一種，根據「誰負責管理什麼」，分為三個等級。我們用<strong>「披薩類比」</strong>來快速理解：</p>
+
+<table>
+<thead><tr><th>模型</th><th>全稱</th><th>管理範圍</th><th>披薩類比</th></tr></thead>
+<tbody>
+<tr><td><strong>IaaS</strong></td><td>Infrastructure as a Service<br>(基礎設施即服務)</td><td>提供硬體 (CPU/RAM/Disk/網路)。你得自己裝 OS、裝軟體。</td><td><strong>買冷凍披薩</strong><br>店提供披薩，但你要自己烤、準備餐具和飲料。</td></tr>
+<tr><td><strong>PaaS</strong></td><td>Platform as a Service<br>(平台即服務)</td><td>提供硬體 + OS + 開發環境。你只需要寫程式碼。</td><td><strong>外送披薩</strong><br>披薩烤好了送來，你只需要準備桌子和飲料。</td></tr>
+<tr><td><strong>SaaS</strong></td><td>Software as a Service<br>(軟體即服務)</td><td>提供完整的成品軟體。你直接使用即可。</td><td><strong>去餐廳吃披薩</strong><br>全部由餐廳搞定，你只需要坐下來吃。</td></tr>
+</tbody>
+</table>
+
+<div class="vocab">
+<span class="vocab-term">GCP 中的實例</span><br>
+當我們在 GCP 中建立 <strong>Compute Engine VM</strong> 時，我們使用的是 <strong>IaaS</strong>。因為 GCP 只給我們一台虛擬機，我們要決定安裝什麼 Linux 版本，以及如何在裡面設定伺服器。
+</div>
+
+<h2>3. 部署模型：公有雲、私有雲與混合雲</h2>
+<ul>
+  <li><strong>公有雲 (Public Cloud)</strong>: 如 GCP、AWS。資源對所有人開放，共用基礎設施，但資料邏輯隔離。</li>
+  <li><strong>私有雲 (Private Cloud)</strong>: 公司在自己的機房建立雲端環境。安全最高，但成本極高。</li>
+  <li><strong>混合雲 (Hybrid Cloud)</strong>: 重要資料放私有雲，彈性需求（如大促銷）放公有雲。</li>
+</ul>
+
+<div class="self-check">
+<strong>反向驗證時間</strong><br>
+請嘗試回答以下問題：
+<ol>
+  <li>如果你是一家剛起步的創業公司，預算有限且不確定未來一年需要多少伺服器，你會選擇 CapEx 還是 OpEx？為什麼？</li>
+  <li>你每天使用的 Gmail 屬於 IaaS, PaaS 還是 SaaS？為什麼？</li>
+  <li>如果你想在雲端建立一個完全由你掌控、可以隨意修改底層系統設定的伺服器，你會選擇哪一種模型 (IaaS/PaaS/SaaS)？</li>
+</ol>
+把你的答案傳給我，確認理解後，我們將進入 Module 3 的最後一環：<strong>三大雲端巨頭 (AWS, Azure, GCP) 的定位差異</strong>！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0005-datacenter-vs-cloud.html">⬅ 上一課</a>
+<a href="0006-cloud-giants.html">⬇ 下一課(雲端巨頭分析)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 3 前半段<br>
+💬 <strong>導師提醒</strong>: IaaS/PaaS/SaaS 是所有雲端面試的必考題，請務必能用自己的話解釋清楚。
+</small></p>
+
+</body>
+</html>

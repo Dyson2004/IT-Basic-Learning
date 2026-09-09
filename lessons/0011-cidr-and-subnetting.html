@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0011 — CIDR 記法與切分網路的邏輯</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .cidr-box { background: #eff6ff; border: 1px solid #bfdbfe; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
+  .bit-stream { font-family: monospace; display: flex; gap: 2px; justify-content: center; margin: 10px 0; }
+  .bit-1 { color: var(--primary-color); font-weight: bold; border-bottom: 2px solid var(--primary-color); }
+  .bit-0 { color: #9ca3af; }
+  .bit-borrow { color: #ef4444; font-weight: bold; border-bottom: 2px solid #ef4444; }
+  .formula { background: #f9fafb; padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color); margin: 1rem 0; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<h1>0011 — CIDR 記法與切分網路的邏輯</h1>
+<p><strong>對應模組</strong>: Module 5 — IP 位址與子網路劃分<br>
+<strong>預計時間</strong>: 45 分鐘 (這是全課最難的部分，請耐心面對)</p>
+
+<div class="analogy">
+想像你有一塊巨大的<strong>「披薩」</strong> (一個大的網路範圍)。<br><br>
+標準的 <code>/24</code> 網路就像是披薩被切成 256 塊。如果你直接把這塊披薩給一個只有 10 個人的團隊，會造成極大的浪費。而且，如果你想把披薩分給三個不同的團隊，且要求<strong>「他們之間不能互相偷吃」</strong> (網路隔離)，你就必須重新定義切法。<br><br>
+<strong>「子網路劃分 (Subnetting)」</strong> 就是在決定：我要把披薩切成 2 塊、4 塊還是 8 塊？每一塊要包含多少片？
+</div>
+
+<h2>1. 什麼是 CIDR 記法？</h2>
+<p>寫 <code>255.255.255.0</code> 太累了，所以工程師發明了 <strong>CIDR (Classless Inter-Domain Routing)</strong> 記法。它直接告訴你：<strong>「遮罩中從左邊開始算起，有多少個連續的 1」。</strong></p>
+
+<div class="cidr-box">
+<strong>範例：<code>/24</code> 代表什麼？</strong><br>
+代表前 24 個 bit 全是 1 $\rightarrow$ <code>11111111.11111111.11111111.00000000</code><br>
+轉換成十進位就是 $\rightarrow$ <code>255.255.255.0</code>
+</div>
+
+<p>如果我們把 <code>/24</code> 變成 <code>/25</code> 呢？<br>
+這意味著我們<strong>「借走」</strong>了一個原本屬於主機的 bit 給網路使用：<br>
+<code>11111111.11111111.11111111.</code><span class="bit-borrow">1</span><code>0000000</code></p>
+
+<h2>2. 借位 (Borrowing Bits) 的魔力</h2>
+<p>每借走一個 bit，你的網路數量就會<strong>翻倍</strong>，而每個網路能容納的主機數量會<strong>減半</strong>。</p>
+
+<table class="binary-table">
+<thead><tr><th>CIDR</th><th>借位數量</th><th>子網路數量 ($2^n$)</th><th>每個子網路的主機數 ($2^h-2$)</th></tr></thead>
+<tbody>
+<tr><td><code>/24</code></td><td>0</td><td>$2^0 = 1$</td><td>$2^8 - 2 = 254$</td></tr>
+<tr><td><code>/25</code></td><td>1</td><td>$2^1 = 2$</td><td>$2^7 - 2 = 126$</td></tr>
+<tr><td><code>/26</code></td><td>2</td><td>$2^2 = 4$</td><td>$2^6 - 2 = 62$</td></tr>
+<tr><td><code>/27</code></td><td>3</td><td>$2^3 = 8$</td><td>$2^5 - 2 = 30$</td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<strong>為什麼要減 2？</strong><br>
+因為每個子網路都有兩個特殊地址不能用：<strong>網路位址</strong> (全 0) 和 <strong>廣播位址</strong> (全 1)。
+</div>
+
+<h2>3. 實戰計算公式</h2>
+<p>當你面對一個子網路題目時，請遵循以下三個步驟：</p>
+
+<div class="formula">
+<strong>步驟 1：算出子網路數量</strong><br>
+公式：$2^{\text{借位數量}}$<br>
+(例如：從 /24 變 /26，借了 2 位 $\rightarrow 2^2 = 4$ 個子網路)
+</div>
+
+<div class="formula">
+<strong>步驟 2：算出每個子網路的主機容量</strong><br>
+公式：$2^{\text{剩餘 0 的數量}} - 2$<br>
+(例如：/26 剩下 6 個 0 $\rightarrow 2^6 - 2 = 62$ 台主機)
+</div>
+
+<div class="formula">
+<strong>步驟 3：確定「跳躍間距 (Magic Number)」</strong><br>
+公式：$256 - \text{遮罩最後一段的數值}$<br>
+(例如：/26 的遮罩是 255.255.255.192 $\rightarrow 256 - 192 = 64$) <br>
+這意味著你的網路位址會是：<code>.0</code>, <code>.64</code>, <code>.128</code>, <code>.192</code>
+</div>
+
+<div class="self-check">
+<strong>反向驗證時間 (初步計算挑戰)</strong><br>
+假設你現在有一個 <code>192.168.1.0/24</code> 的網路，但老闆要求你將其切分為 <strong>4 個子網路</strong>。
+<ol>
+  <li>為了切成 4 個子網路，你需要借走幾個 bit？(提示：$2^n = 4$)</li>
+  <li>切分後，新的 CIDR 記法應該是多少？(原本 /24 + 借走的 bits)</li>
+  <li>每個新的子網路中，最多可以容納多少台主機？(請使用公式 $2^h - 2$)</li>
+</ol>
+<strong>請慢慢計算，寫出過程。</strong> 這堂課如果能弄懂，你就已經超越了 80% 的 IT 初學者！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0010-ip-and-subnet-mask.html">⬅ 上一課</a>
+<a href="0012-subnet-range-calculation.html">⬇ 下一課(範圍計算)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 5 中段<br>
+💬 <strong>導師提醒</strong>: 不要被數學嚇到。Subnetting 的本質就是「不斷地將空間對半切」。
+</small></p>
+
+</body>
+</html>

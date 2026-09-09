@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT 基礎完整詞彙表 — 綜合版</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .vocab-section {{ margin-bottom: 3rem; }}
+  .vocab-grid {{ display: grid; grid-template-columns: 1fr; gap: 0.8em; margin: 1em 0; }}
+  .vocab-card {{ border: 1px solid var(--border-color); border-radius: 8px; padding: 0.8em 1em; background: var(--bg); }}
+  .vocab-card h4 {{ margin: 0 0 0.3em 0; color: var(--primary); font-size: 1.05em; }}
+  .vocab-card .en {{ color: var(--text-light); font-size: 0.85em; font-style: italic; }}
+  .vocab-card .desc {{ font-size: 0.95em; margin-top: 0.3em; }}
+  .module-header {{ background: var(--primary); color: white; padding: 0.5rem 1rem; border-radius: 4px; margin-top: 2rem; }}
+</style>
+</head>
+<body>
+<h1>IT 基礎完整詞彙表</h1>
+<p>本詞彙表是您學習過程中的中央知識庫。每當課程進入新模組，此表將同步更新。</p>
+
+<div class="vocab-section">
+  <div class="module-header">Module 1: IT 基礎概念與硬體</div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <h4>硬體 <span class="en">Hardware</span></h4>
+      <div class="desc">電腦系統中所有實體、可觸摸的組件。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>中央處理器 <span class="en">CPU (Central Processing Unit)</span></h4>
+      <div class="desc">電腦的「大腦」，負責執行指令、運算與調度所有硬體資源。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>隨機存取記憶體 <span class="en">RAM (Random Access Memory)</span></h4>
+      <div class="desc">電腦的「短期工作台」，臨時存放 CPU 正在處理的資料。斷電後資料消失。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>儲存硬碟 <span class="en">Storage (HDD / SSD)</span></h4>
+      <div class="desc">電腦的「檔案櫃」，長期保存資料。斷電後資料不消失。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>網路卡 <span class="en">NIC (Network Interface Card)</span></h4>
+      <div class="desc">電腦連上網路的「門牌信箱」，負責資料轉換為訊號傳輸。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>顯示卡 <span class="en">GPU (Graphics Processing Unit)</span></h4>
+      <div class="desc">專責圖形運算與平行運算的處理器。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>作業系統 <span class="en">Operating System (OS)</span></h4>
+      <div class="desc">管理硬體資源的軟體，是硬體與應用程式之間的翻譯官。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>應用程式 <span class="en">Application (App)</span></h4>
+      <div class="desc">執行特定任務的軟體，運行在作業系統之上。</div>
+    </div>
+  </div>
+</div>
+
+<div class="vocab-section">
+  <div class="module-header">Module 2: 伺服器與虛擬化</div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <h4>伺服器 <span class="en">Server</span></h4>
+      <div class="desc">強化版的電腦，設計目標為 24/7 不間斷運作且服務多個使用者。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>備援 <span class="en">Redundancy</span></h4>
+      <div class="desc">配置多份備份（如雙電源、RAID）以確保單個零件損壞時服務不中斷。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>單點故障 <span class="en">SPOF (Single Point of Failure)</span></h4>
+      <div class="desc">系統中若某個單一元件失效，會導致整個系統崩潰的臨界點。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>虛擬化 <span class="en">Virtualization</span></h4>
+      <div class="desc">透過軟體將實體硬體切割成多個獨立虛擬環境的技術。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>虛擬化管理程序 <span class="en">Hypervisor</span></h4>
+      <div class="desc">負責管理實體資源並將其分配給各個虛擬機 (VM) 的管家軟體。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>宿主機 <span class="en">Host</span></h4>
+      <div class="desc">提供實體硬體資源的真實電腦。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>客體機 / 虛擬機 <span class="en">Guest / VM (Virtual Machine)</strong></h4>
+      <div class="desc">運行在 Host 之上的獨立虛擬電腦，擁有自己的 OS。</div>
+    </div>
+  </div>
+</div>
+
+<div class="vocab-section">
+  <div class="module-header">Module 3: 資料中心與雲端運算</div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <h4>地端 <span class="en">On-premises</span></h4>
+      <div class="desc">在自有機房中部署和管理實體硬體。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>資本支出 <span class="en">CapEx (Capital Expenditure)</span></h4>
+      <div class="desc">一次性投入大筆資金購買資產 (如買伺服器)。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>營運支出 <span class="en">OpEx (Operational Expenditure)</span></h4>
+      <div class="desc">按使用量支付的日常費用 (如租用雲端服務)。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>基礎設施即服務 <span class="en">IaaS (Infrastructure as a Service)</span></h4>
+      <div class="desc">提供虛擬硬體，使用者需自行管理 OS 與應用程式 (如 GCP Compute Engine)。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>平台即服務 <span class="en">PaaS (Platform as a Service)</strong></h4>
+      <div class="desc">提供開發環境，使用者只需專注於撰寫程式碼。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>軟體即服務 <span class="en">SaaS (Software as a Service)</span></h4>
+      <div class="desc">直接提供完整成品軟體，使用者直接操作 (如 Gmail)。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>多雲策略 <span class="en">Multi-Cloud</span></h4>
+      <div class="desc">同時使用多家雲端供應商以避免被單一供應商綁架 (Vendor Lock-in)。</div>
+    </div>
+  </div>
+</div>
+
+<div class="vocab-section">
+  <div class="module-header">Module 4: 網路基礎知識</div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <h4>區域網路 <span class="en">LAN (Local Area Network)</span></h4>
+      <div class="desc">覆蓋單一辦公室或家中的私有高速網路。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>廣域網路 <span class="en">WAN (Wide Area Network)</span></h4>
+      <div class="desc">連接不同城市或國家的長距離網路。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>交換器 <span class="en">Switch</span></h4>
+      <div class="desc">LAN 的核心設備，根據 MAC 地址精準將資料送至目標電腦。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>路由器 <span class="en">Router</span></h4>
+      <div class="desc">跨網路的導航員，負責將資料在不同網路之間路由 (Routing)。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>網路拓樸 <span class="en">Topology</span></h4>
+      <div class="desc">設備之間物理連接的形狀（如星狀、網狀）。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>封包 <span class="en">Packet</span></h4>
+      <div class="desc">網路傳輸的最小單位，包含寄件人、收件人地址與內容。</div>
+    </div>
+  </div>
+</div>
+
+<div class="vocab-section">
+  <div class="module-header">Module 5: IP 位址與子網路 (進行中)</div>
+  <div class="vocab-grid">
+    <div class="vocab-card">
+      <h4>二進位 <span class="en">Binary</span></h4>
+      <div class="desc">僅由 0 和 1 組成的數制，是電腦底層溝通的語言。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>位元 <span class="en">Bit</span></h4>
+      <div class="desc">二進位的最小單位，代表一個開關狀態 (0 或 1)。</div>
+    </div>
+    <div class="vocab-card">
+      <h4>字節 <span class="en">Byte</span></h4>
+      <div class="desc">8 個 Bit 組合成的一個單位。</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<p><small>參考來源: freeCodeCamp IT Fundamentals Course $\rightarrow$ 綜合整理</small></p>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0010 — IP 位址與子網路遮罩：界線在哪裡？</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .binary-row { display: flex; font-family: monospace; gap: 5px; margin: 10px 0; }
+  .bit { border: 1px solid var(--border-color); padding: 5px 10px; background: #f9fafb; }
+  .bit.network { background-color: #dbeafe; color: var(--primary-color); font-weight: bold; }
+  .bit.host { background-color: #fef3c7; color: #b45309; }
+  .calc-box { background: #f3f4f6; border-left: 4px solid var(--primary-color); padding: 1rem; margin: 1rem 0; font-family: monospace; }
+  .and-op { text-align: center; font-weight: bold; color: var(--danger-color); margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<h1>0010 — IP 位址與子網路遮罩：界線在哪裡？</h1>
+<p><strong>對應模組</strong>: Module 5 — IP 位址與子網路劃分<br>
+<strong>預計時間</strong>: 30-40 分鐘 (這是核心難點，請慢慢讀)</p>
+
+<div class="analogy">
+想像 IP 位址就像一個<strong>「完整的郵寄地址」</strong>，例如：<code>台北市大安區信義路五段 1 號</code>。<br><br>
+在這個地址中，包含兩個層級：<br>
+1. <strong>區域 (網路 ID)</strong>：<code>台北市大安區信義路五段</code> $\rightarrow$ 這決定了快遞員要把信送到哪個區域。<br>
+2. <strong>門牌 (主機 ID)</strong>：<code>1 號</code> $\rightarrow$ 進入該區域後，決定具體交給哪一戶。<br><br>
+<strong>問題是</strong>：電腦讀取 IP 時，它只看到一串數字（例如 <code>192.168.1.10</code>），它怎麼知道哪裡是「區域」，哪裡是「門牌」？<br>
+這時候，它需要一張 <strong>「遮罩 (Subnet Mask)」</strong> 把它蓋上去。
+</div>
+
+<h2>1. 子網路遮罩 (Subnet Mask) 的原理</h2>
+<p>子網路遮罩的規則非常簡單：<strong>連續的 1 代表「這是網路部分」，連續的 0 代表「這是主機部分」。</strong></p>
+<p>最常見的遮罩是 <code>255.255.255.0</code>。讓我們把它轉換成二進位看看：</p>
+
+<div class="binary-row">
+  <div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div>
+  <span>.</span>
+  <div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div>
+  <span>.</span>
+  <div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div><div class="bit network">1</div>
+  <span>.</span>
+  <div class="bit host">0</div><div class="bit host">0</div><div class="bit host">0</div><div class="bit host">0</div><div class="bit host">0</div><div class="bit host">0</div><div class="bit host">0</div><div class="bit host">0</div>
+</div>
+<p>看到沒？前三個部分全部是 1 (255)，最後一個部分全部是 0。這告訴電腦：<strong>「前三個數字是社區名稱，最後一個數字才是門牌號碼。」</strong></p>
+
+<h2>2. 核心運算：AND 運算 (邏輯與)</h2>
+<p>電腦如何利用遮罩算出網路位址？它使用一種叫 <strong>AND</strong> 的邏輯運算。規則只有一個：<strong>只有兩個都是 1，結果才是 1；否則都是 0。</strong></p>
+
+<div class="calc-box">
+<strong>範例：計算 IP <code>192.168.1.10</code> 的網路位址 (遮罩 <code>255.255.255.0</code>)</strong><br>
+(我們簡化只看最後一個八位組)<br>
+IP 最後一段: <code>00001010</code> (10)<br>
+遮罩最後一段: <code>00000000</code> (0)<br>
+<div class="and-op">AND 運算</div>
+結果: <code>00000000</code> (0)<br>
+<strong>結論</strong>: 該 IP 的網路位址 (社區名稱) 是 <code>192.168.1.0</code>
+</div>
+
+<div class="tip">
+<strong>關鍵洞察</strong>: 只要遮罩是 255，對應的 IP 位址會原封不動地保留；只要遮罩是 0，對應的 IP 位址會全部變成 0。
+</div>
+
+<h2>3. 網路位址 vs. 廣播位址</h2>
+<p>在每一個子網路中，有兩個特殊的 IP 是<strong>絕對不能分配給電腦</strong>使用的：</p>
+<ul>
+  <li><strong>網路位址 (Network Address)</strong>：主機部分全為 0。例如 <code>192.168.1.0</code>。它代表這個社區本身。</li>
+  <li><strong>廣播位址 (Broadcast Address)</strong>：主機部分全為 1。例如 <code>192.168.1.255</code>。它像是一個巨大的喇叭，發送到這個地址的訊息，社區內所有人都能收到。</li>
+</ul>
+
+<div class="self-check">
+<strong>反向驗證時間 (邏輯挑戰)</strong><br>
+請思考並回答以下問題：
+<ol>
+  <li>如果 IP 是 <code>172.16.10.5</code>，而遮罩是 <code>255.255.0.0</code>，請問這個 IP 的「社區名稱 (網路位址)」是什麼？</li>
+  <li>為什麼我們不能把 <code>192.168.1.0</code> 分配給一台筆電使用？</li>
+  <li>如果我想讓一個網路的「門牌號碼 (Host ID)」部分變長（能容納更多電腦），我應該讓遮罩中的 1 變多，還是讓 0 變多？為什麼？</li>
+</ol>
+把你的答案傳給我。這堂課是理解子網路劃分的最後一道門，通過後，我們正式進入 <strong>Subnetting 計算實戰</strong>！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0009-binary-basics.html">⬅ 上一課</a>
+<a href="0011-cidr-and-subnetting.html">⬇ 下一課(CIDR 與切分)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 5 前段<br>
+💬 <strong>導師提醒</strong>: 請務必理解「遮罩就像濾鏡」這個類比。接下來我們要學習如何「自定義濾鏡」來切分網路。
+</small></p>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* IT Fundamentals 課程共享樣式表 */
+/* 設計原則: Tufte 風格，乾淨、可讀、適合列印 */
+
+:root {
+  --primary: #2c3e50;
+  --accent: #3498db;
+  --accent-light: #ebf5fb;
+  --warning: #e67e22;
+  --warning-light: #fef5e7;
+  --success: #27ae60;
+  --success-light: #eafaf1;
+  --danger: #e74c3c;
+  --danger-light: #fdedec;
+  --text: #2c3e50;
+  --text-light: #7f8c8d;
+  --bg: #ffffff;
+  --bg-alt: #f8f9fa;
+  --border: #dee2e6;
+  --code-bg: #f4f4f4;
+  --font-serif: 'Georgia', 'Noto Serif TC', 'Source Han Serif TC', serif;
+  --font-sans: -apple-system, 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  color: var(--primary);
+  line-height: 1.3;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.3em; }
+h2 { font-size: 1.4rem; color: var(--accent); }
+h3 { font-size: 1.2rem; }
+
+p { margin-bottom: 1em; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+}
+
+a:hover { border-bottom-style: solid; }
+
+ul, ol { margin-left: 1.5em; margin-bottom: 1em; }
+li { margin-bottom: 0.3em; }
+
+code {
+  font-family: var(--font-mono);
+  background: var(--code-bg);
+  padding: 0.15em 0.3em;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  background: var(--accent-light);
+  color: var(--primary);
+  font-style: italic;
+}
+
+/* 對比表格 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.95em;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.6em 0.8em;
+  text-align: left;
+}
+
+th {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+tr:nth-child(even) { background: var(--bg-alt); }
+
+/* 提示框 */
+.tip {
+  border-left: 4px solid var(--success);
+  background: var(--success-light);
+  padding: 0.8em 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.warning {
+  border-left: 4px solid var(--warning);
+  background: var(--warning-light);
+  padding: 0.8em 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.danger {
+  border-left: 4px solid var(--danger);
+  background: var(--danger-light);
+  padding: 0.8em 1em;
+  margin: 1em 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* 類比框 */
+.analogy {
+  border: 2px dashed var(--accent);
+  background: var(--accent-light);
+  padding: 1em 1.2em;
+  margin: 1em 0;
+  border-radius: 8px;
+}
+
+.analogy::before {
+  content: "💡 生活類比";
+  display: block;
+  font-weight: bold;
+  color: var(--accent);
+  margin-bottom: 0.5em;
+}
+
+/* 自我檢測區 */
+.self-check {
+  border: 2px solid var(--warning);
+  background: var(--warning-light);
+  padding: 1em 1.2em;
+  margin: 1.5em 0;
+  border-radius: 8px;
+}
+
+.self-check::before {
+  content: "🧪 反向驗證時間";
+  display: block;
+  font-weight: bold;
+  color: var(--warning);
+  margin-bottom: 0.5em;
+  font-size: 1.1em;
+}
+
+/* 進度導航 */
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 2em 0;
+  padding: 1em;
+  background: var(--bg-alt);
+  border-radius: 8px;
+}
+
+/* 詞彙卡 */
+.vocab {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8em 1em;
+  margin: 0.8em 0;
+  background: var(--bg);
+}
+
+.vocab-term {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.vocab-en {
+  color: var(--text-light);
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+/* 列印優化 */
+@media print {
+  body { max-width: none; padding: 0; font-size: 12pt; }
+  .lesson-nav, a[href]::after { content: ""; }
+  .tip, .warning, .danger, .analogy, .self-check { break-inside: avoid; }
+}

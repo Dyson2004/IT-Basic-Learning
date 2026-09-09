@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0001 — 電腦裡面有什麼？硬體與軟體的分野</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>0001 — 電腦裡面有什麼？硬體與軟體的分野</h1>
+<p><strong>對應模組</strong>: Module 1 — IT 基礎概念與硬體組件<br>
+<strong>預計時間</strong>: 15–20 分鐘</p>
+
+<!--
+This lesson teaches the most fundamental distinction in IT: hardware vs software, and the core hardware components.
+The user mentioned having only basic IT literacy, so this is solidly in their ZPD - not too easy (they may not know how the parts interact), not too hard (concrete, physical components).
+The "small win" at the end: the user can match each hardware part to a real-world office analogy, and explain why RAM vs Storage matters.
+-->
+
+<h2>本課目標</h2>
+<ol>
+  <li>能區分「硬體」(Hardware) 與「軟體」(Software) 的差別。</li>
+  <li>能說出電腦 / 伺服器 / 手機共通的五大硬體元件。</li>
+  <li>能解釋 RAM 與 Storage 的關鍵差異(為什麼重新開機後 RAM 的東西會不見)。</li>
+</ol>
+
+<div class="analogy">
+先別管那些英文術語。想像你走進一間<strong>辦公室</strong>——
+<br><br>
+辦公桌、椅子、櫃子、電話，這些看得見摸得著的實體,就是「<strong>硬體(Hardware)</strong>」。
+<br>而桌上的工作流程表、作業標準書、會議議程這些「指導怎麼做事」的無形規則,就是「<strong>軟體(Software)</strong>」。
+<br><br>
+電腦世界也是一樣：<strong>硬體 = 設備實體，軟體 = 指導實體工作的指令</strong>。
+</div>
+
+<h2>硬體的五大元件</h2>
+<p>無論你拆開的是桌上型電腦、伺服器機房裡的機器，還是你的手機，裡面都有這五個核心部件:</p>
+
+<table>
+<thead><tr><th>元件</th><th>英文</th><th>辦公室類比</th><th>一句話角色</th></tr></thead>
+<tbody>
+<tr><td><strong>中央處理器</strong></td><td>CPU</td><td>主管本人</td><td>執行指令、運算、調度所有資源</td></tr>
+<tr><td><strong>記憶體</strong></td><td>RAM</td><td>辦公桌面</td><td>暫時放「正在處理」的資料</td></tr>
+<tr><td><strong>儲存硬碟</strong></td><td>Storage</td><td>檔案櫃</td><td>永久保存資料</td></tr>
+<tr><td><strong>網卡</strong></td><td>NIC</td><td>電話/信箱</td><td>與外界(網路)溝通的門牌</td></tr>
+<tr><td><strong>顯示卡</strong></td><td>GPU</td><td>專員助手</td><td>專門處理圖像/平行運算</td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<strong>關鍵洞察</strong>: 「伺服器」其實就是一台強化版的電腦 —— 同樣有 CPU、RAM、Storage、網卡，只是規格更強、穩定性更高、不分晝夜開機運作。你手機的「處理器」、「記憶體」概念也完全一樣，只是體積更小。
+</div>
+
+<h2>RAM vs Storage: 一個讓你秒懂的問題</h2>
+<p>這是初學者最容易混淆的一對。請看下表對比:</p>
+
+<table>
+<thead><tr><th></th><th>RAM (記憶體)</th><td>Storage (儲存)</td></tr></thead>
+<tbody>
+<tr><td>類比</td><td>辦公桌面</td><td>檔案櫃</td></tr>
+<tr><td>速度</td><td>超快(秒讀)</td><td>較慢(幾百到幾千倍)</td></tr>
+<tr><td>大小</td><td>小(8~64 GB 常見)</td><td>大(512 GB ~ 多 TB)</td></tr>
+<tr><td>斷電</td><td><strong>消失</strong>(揮發性)</td><td><strong>保留</strong>(非揮發性)</td></tr>
+<tr><td>放什麼</td><td>正在用的文件</td><td>所有文件的收藏</td></tr>
+</tbody>
+</table>
+
+<div class="warning">
+<strong>為什麼重新開機後 RAM 清空?</strong>
+因為 RAM 是「快速存取用」的電容器件，依賴持續供電維持資料。一旦斷電，桌面被「清空」。所以你必須先把文件「存檔」(從 RAM 寫入 Storage), 斷電後下次開機才能從檔案櫃中找回它。
+</div>
+
+<h2>軟體的兩層結構</h2>
+<p>軟體不是只有一種。它分為兩層:</p>
+
+<div class="vocab">
+<span class="vocab-term">作業系統 (Operating System, OS)</span><br>
+<span class="vocab-en">Operating System</span><br>
+「管理硬體的人」。所有應用程式想用 CPU、RAM、網卡，都必須透過作業系統。它是硬體與應用程式之間的「翻譯官」。<br>
+例如: Windows、Linux、macOS、Android、iOS。
+</div>
+
+<div class="vocab">
+<span class="vocab-term">應用程式 (Application, App)</span><br>
+<span class="vocab-en">Application</span><br>
+「執行特定任務」的軟體，必須運行在某個作業系統之上。<br>
+例如: Chrome(瀏覽器)、Excel(試算表)、Uber(叫車)、Line(通訊)。
+</div>
+
+<div class="self-check">
+<strong>反向驗證時間</strong>
+<br>請用自己的話回答以下三個問題（不要只回 OK 或懂了）:
+<ol>
+<li>如果把電腦比喻為辦公室，CPU、RAM、Storage 分別對應的角色是什麼？為什麼 RAM 像「桌面」而不是「檔案櫃」？</li>
+<li>有人跟你抱怨「我電腦 1TB 又很多，為什麼開 Chrome 還會卡？你會怎麼解釋給他聽？</li>
+<li>Android 是「作業系統」還是「應用程式」？它跟 Line(應用) 的關係是什麼？</li>
+</ol>
+把你的回答傳給我，我會給你回饋後我們再進入 Module 1 的第二課（伺服器、虛擬化的預熱）。
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="#">⬅ 上一課(無)</a>
+<a href="0002-server-concept.html">⬇ 下一課(伺服器概念)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g&t=51">freeCodeCamp IT Fundamentals Course</a> — 影片開頭前半段<br>
+📖 <strong>延伸閱讀</strong>: <a href="https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/">Cloudflare - 什麼是電腦硬體</a><br>
+💬 <strong>有問題？</strong>請直接告訴我哪裡不清楚，我是你的導師，隨時為你解惑。
+</small></p>
+
+</body>
+</html>

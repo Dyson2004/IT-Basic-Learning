@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>零基礎 IT 基礎與雲端架構學習指南 | 16 堂核心技術課</title>
+    <meta name="description" content="專為零基礎打造的 IT 基礎與雲端架構課程，從硬體、虛擬化到 GCP 實作，搭配生活比喻與互動範例，帶你輕鬆掌握現代 IT 核心。">
+    <meta name="keywords" content="IT基礎, 雲端架構, GCP, 網路基礎, 虛擬化, 零基礎學IT, SEO教學">
+    
+    <!-- Open Graph / GEO Meta Tags -->
+    <meta property="og:title" content="零基礎 IT 基礎與雲端架構學習指南">
+    <meta property="og:description" content="從硬體、網路到雲端 VPC 的 16 堂核心技術課，用生活比喻打通 IT 任督二脈。">
+    <meta property="og:type" content="website">
+
+    <style>
+        :root {
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --primary: #2563eb;
+            --border: #e2e8f0;
+            --radius: 12px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 32px 16px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        header {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        h1 { margin: 0 0 12px 0; font-size: 2rem; color: var(--primary); }
+        p { color: var(--muted); margin: 0; font-size: 1.05rem; }
+        
+        .section-title {
+            font-size: 1.25rem;
+            margin: 32px 0 16px 0;
+            font-weight: 700;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .lesson-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .lesson-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+        .lesson-num {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .lesson-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 零基礎 IT 基礎與雲端架構學習指南</h1>
+            <p>這是一座專為零基礎學習者打造的技術知識庫。從實體硬體、網路拓樸到雲端虛擬私人雲 (VPC)，透過生活比喻與結構化模組，帶你逐步攻克 IT 核心。</p>
+        </header>
+
+        <div class="section-title">📚 課程模組與目錄</div>
+        <div class="lesson-grid">
+            <a href="lessons/0001-hardware-vs-software.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 01</div>
+                    <div class="lesson-title">電腦裡面有什麼？硬體與軟體的分野</div>
+                </div>
+            </a>
+            <a href="lessons/0002-server-concept.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 02</div>
+                    <div class="lesson-title">伺服器：一台不休息的超級電腦</div>
+                </div>
+            </a>
+            <a href="lessons/0003-virtualization-intro.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 03</div>
+                    <div class="lesson-title">虛擬化：打破硬體的枷鎖</div>
+                </div>
+            </a>
+            <a href="lessons/0004-aws-setup.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 04a</div>
+                    <div class="lesson-title">準備你的雲端實驗室：AWS 帳號設定</div>
+                </div>
+            </a>
+            <a href="lessons/0004-gcp-setup.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 04b</div>
+                    <div class="lesson-title">準備你的雲端實驗室：GCP 帳號設定</div>
+                </div>
+            </a>
+            <a href="lessons/0005-datacenter-vs-cloud.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 05</div>
+                    <div class="lesson-title">從地端到雲端：商業邏輯的革命</div>
+                </div>
+            </a>
+            <a href="lessons/0006-cloud-giants.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 06</div>
+                    <div class="lesson-title">三大雲端巨頭：AWS, Azure, GCP 的定位</div>
+                </div>
+            </a>
+            <a href="lessons/0007-networking-basics.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 07</div>
+                    <div class="lesson-title">網路基礎：從家裡到全世界</div>
+                </div>
+            </a>
+            <a href="lessons/0008-network-topology.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 08</div>
+                    <div class="lesson-title">網路拓樸：打造穩定的連接網</div>
+                </div>
+            </a>
+            <a href="lessons/0009-binary-basics.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 09</div>
+                    <div class="lesson-title">IP 的語言：二進位與十進位</div>
+                </div>
+            </a>
+            <a href="lessons/0010-ip-and-subnet-mask.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 10</div>
+                    <div class="lesson-title">IP 位址與子網路遮罩：界線在哪裡？</div>
+                </div>
+            </a>
+            <a href="lessons/0011-cidr-and-subnet-mapping.html" class="lesson-card" style="display:none;"></div>
+            <a href="lessons/0011-cidr-and-subnetting.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 11</div>
+                    <div class="lesson-title">CIDR 記法與切分網路的邏輯</div>
+                </div>
+            </a>
+            <a href="lessons/0012-subnet-range-calculation.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 12</div>
+                    <div class="lesson-title">尋找邊界：跳躍間距與範圍計算</div>
+                </div>
+            </a>
+            <a href="lessons/0013-routing-and-vpc.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 13</div>
+                    <div class="lesson-title">路由與 VPC：雲端的私人領地</div>
+                </div>
+            </a>
+            <a href="lessons/0014-gcp-vpc-practice.html" class="lesson-card">
+                <div>
+                    <div class="lesson-num">Lesson 14</div>
+                    <div class="lesson-title">GCP 實作：親手建立您的第一個 VPC</div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

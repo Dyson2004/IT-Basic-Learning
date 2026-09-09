@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0014 — GCP 實作：親手建立您的第一個 VPC</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .step-card { border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; margin: 1rem 0; background: #f9fafb; }
+  .step-number { background: var(--primary-color); color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-block; text-align: center; line-height: 24px; margin-right: 10px; font-size: 0.8em; }
+  .gcp-path { font-family: monospace; background: #eee; padding: 2px 5px; border-radius: 3px; color: #c0392b; }
+  .caution { background: #fff5f5; border-left: 4px solid #fc8181; padding: 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<h1>0014 — GCP 實作：親手建立您的第一個 VPC</h1>
+<p><strong>對應模組</strong>: Module 6 — 路由與 VPC (實作篇)<br>
+<strong>預計時間</strong>: 40 分鐘</p>
+
+<div class="analogy">
+現在我們不再討論「披薩怎麼切」，而是直接打開 <strong>GCP 控制台</strong>，在雲端切出一塊真正的領地。這就像是在虛擬世界中蓋一座圍牆，並在牆上開幾個有守衛的門。
+</div>
+
+<h2>🛠️ 實作目標</h2>
+<p>建立一個名為 <code>it-study-vpc</code> 的網路，包含：</p>
+<ul>
+  <li><strong>Public-Subnet</strong>: <code>10.0.1.0/24</code> (給網站伺服器用)</li>
+  <li><strong>Private-Subnet</strong>: <code>10.0.2.0/24</code> (給資料庫用)</li>
+</ul>
+
+<h2>🚀 操作步驟</h2>
+
+<div class="step-card">
+  <span class="step-number">1</span> <strong>進入 VPC 頁面</strong><br>
+  登入 GCP Console $\rightarrow$ 搜尋欄輸入 <span class="gcp-path">VPC network</span> $\rightarrow$ 點擊 <strong>「VPC 網路」</strong>。
+</div>
+
+<div class="step-card">
+  <span class="step-number">2</span> <strong>建立 VPC</strong><br>
+  點擊 <strong>「建立 VPC 網路」</strong> $\rightarrow$ 名稱填入 <code>it-study-vpc</code> $\rightarrow$ <strong>子網路模式</strong> 選擇 <strong>「自定義」</strong>。
+</div>
+
+<div class="step-card">
+  <span class="step-number">3</span> <strong>設定子網路 (重點！)</strong><br>
+  新增兩個子網路：
+  <ul>
+    <li><strong>名稱</strong>: <code>public-subnet</code> | <strong>區域</strong>: 選擇您最近的區域 | <strong>IP 範圍</strong>: <code>10.0.1.0/24</code></li>
+    <li><strong>名稱</strong>: <code>private-subnet</code> | <strong>區域</strong>: 選擇同一區域 | <strong>IP 範圍</strong>: <code>10.0.2.0/24</code></li>
+  </ul>
+  點擊 <strong>「建立」</strong>。
+</div>
+
+<div class="step-card">
+  <span class="step-number">4</span> <strong>設定防火牆 (開門)</strong><br>
+  目前 VPC 是封閉的，我們需要開門讓流量進入。前往 <span class="gcp-path">VPC network</span> $\rightarrow$ <strong>「防火牆」</strong> $\rightarrow$ <strong>「建立防火牆規則」</strong>：
+  <ul>
+    <li><strong>名稱</strong>: <code>allow-http-ssh</code></li>
+    <li><strong>目標</strong>: 選擇 <strong>「網路中的所有執行個體」</strong></li>
+    <li><strong>來源 IPv4 範圍</strong>: <code>0.0.0.0/0</code> (代表允許全世界)</li>
+    <li><strong>通訊協定與連接埠</strong>: 勾選 <strong>TCP</strong> $\rightarrow$ 輸入 <code>80, 22</code> (HTTP 與 SSH)</li>
+  </ul>
+</div>
+
+<div class="caution">
+<strong>⚠️ 導師安全提醒</strong>: 在現實工作中，我們絕不會將 <code>0.0.0.0/0</code> 開放給所有連接埠。這裡為了學習方便而這樣設定，但請記得：<strong>權限越小越安全</strong>。
+</div>
+
+<h2>✅ 驗證清單</h2>
+<p>完成後，請檢查您的控制台是否看到：</p>
+<ul>
+  <li>[ ] 一個名為 <code>it-study-vpc</code> 的網路。</li>
+  <li>[ ] 兩個正確範圍的子網路 (10.0.1.0/24 與 10.0.2.0/24)。</li>
+  <li>[ ] 一條允許 TCP 80 和 22 的防火牆規則。</li>
+</ul>
+
+<div class="self-check">
+<strong>實作回報</strong><br>
+這次沒有考卷，請您在完成操作後，直接告訴我：<br>
+<strong>「VPC 已建立完畢，確認無誤！」</strong><br>
+如果您在操作過程中遇到任何錯誤訊息（例如：IP 範圍衝突或權限不足），請立刻截圖或把錯誤貼給我，我幫您排錯。
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0012-subnet-range-calculation.html">⬅ 上一課</a>
+<a href="#">⬇ 下一課(待解鎖)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: Google Cloud Platform Official Documentation $\rightarrow$ VPC Networking<br>
+💬 <strong>導師提醒</strong>: 實作是最好的學習。不要怕按錯，只要不建立昂貴的資源 (如超大型 VM)，建立 VPC 是免費的。
+</small></p>
+
+</body>
+</html>

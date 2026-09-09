@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0013 — 路由與 VPC：雲端的私人領地</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .vpc-diagram { background: #f8fafc; border: 2px solid var(--primary-color); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; position: relative; }
+  .subnet-box { border: 2px dashed #94a3b8; border-radius: 8px; padding: 1rem; margin: 1rem 0; display: inline-block; width: 45%; vertical-align: top; }
+  .subnet-public { border-color: #3b82f6; background: #eff6ff; }
+  .subnet-private { border-color: #ef4444; background: #fef2f2; }
+  .route-arrow { text-align: center; font-size: 1.5rem; color: var(--primary-color); margin: 0.5rem 0; }
+</style>
+</head>
+<body>
+
+<h1>0013 — 路由與 VPC：雲端的私人領地</h1>
+<p><strong>對應模組</strong>: Module 6 — 路由與 VPC<br>
+<strong>預計時間</strong>: 30 分鐘</p>
+
+<div class="analogy">
+想像 VPC 就像是你買了一塊<strong>「私人莊園」</strong>。在莊園裡面，你可以自由規劃：<br><br>
+1. <strong>前院 (Public Subnet)</strong>：設有大門（Internet Gateway），允許訪客進入，適合放你的「接待處」 (例如：網站伺服器)。<br>
+2. <strong>後院 (Private Subnet)</strong>：圍牆高築，沒有對外的大門，只能由前院的管家進入。適合放你的「保險箱」 (例如：資料庫)。<br>
+3. <strong>指路牌 (Routing Table)</strong>：在莊園的每個路口都設有指路牌，告訴路人：「要去網路世界請往東走」、「要去後院請往西走」。
+</div>
+
+<h2>1. 預設閘道 (Default Gateway)</h2>
+<p>當一台電腦想要發送資料到「自己社區 (Subnet) 之外」的地方時，它不知道路怎麼走。這時候，它會將封包交給一個專門的出口 $\rightarrow$ <strong>預設閘道</strong>。</p>
+<p>在現實中，預設閘道通常就是您家裡的 <strong>路由器 (Router)</strong>。</p>
+
+<h2>2. 路由表 (Routing Table)</h2>
+<p>路由器內部有一張表，記錄了所有目的地的路徑。它的運作邏輯非常簡單：<strong>「最精準匹配原則 (Longest Prefix Match)」</strong>。</p>
+<div class="calc-box">
+<strong>路由表範例：</strong><br>
+- 目的地 <code>192.168.1.0/24</code> $\rightarrow$ 走本地接口 (直接送達)<br>
+- 目的地 <code>0.0.0.0/0</code> (代表全世界) $\rightarrow$ 走 <strong>Internet Gateway (IGW)</strong>
+</div>
+
+<h2>3. VPC (Virtual Private Cloud)</h2>
+<p>在 GCP 中，VPC 讓您在雲端定義自己的網路環境。最關鍵的區分在於<strong>「可達性」</strong>：</p>
+
+<div class="vpc-diagram">
+  <strong>我的 GCP VPC</strong>
+  <div class="subnet-box subnet-public">
+    <strong>公有子網路 (Public Subnet)</strong><br>
+    - 有對外出口 (IGW)<br>
+    - 設備擁有公有 IP<br>
+    - <strong>用途</strong>: Web Server, Load Balancer
+  </div>
+  <div class="subnet-box subnet-private">
+    <strong>私有子網路 (Private Subnet)</strong><br>
+    - 無對外直接出口<br>
+    - 設備僅有私有 IP<br>
+    - <strong>用途</strong>: Database, Backend API
+  </div>
+  <div class="route-arrow">$\updownarrow$</div>
+  <div style="text-align: center;"><strong>路由表 (Routing Table) 管理流量方向</strong></div>
+</div>
+
+<div class="tip">
+<strong>安全金律</strong>: 永遠不要把資料庫 (Database) 放在公有子網路中！即便有密碼，暴露在公網上也會增加被攻擊的風險。
+</div>
+
+<div class="self-check">
+<strong>反向驗證時間 (架構思考)</strong><br>
+請想像你要為一家電商公司設計雲端網路：
+<ol>
+  <li>如果你要部署一個「讓客戶瀏覽商品的網站伺服器」，你會把它放在<strong>公有子網路</strong>還是<strong>私有子網路</strong>？為什麼？</li>
+  <li>如果你要部署一個「儲存客戶信用卡資料的資料庫」，你會把它放在哪裡？為什麼？</li>
+  <li>如果私有子網路中的伺服器需要下載軟體更新，但它不能被外界訪問，它應該透過什麼方式連網？ (提示：想想有沒有一種「單向門」設備)</li>
+</ol>
+把你的答案傳給我。通過後，我們將進入 Module 6 的最後一部分：<strong>GCP 實作準備 (VPC 建立)</strong>！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0012-subnet-range-calculation.html">⬅ 上一課</a>
+<a href="0014-gcp-vpc-practice.html">⬇ 下一課(VPC 實作)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 6 前段<br>
+💬 <strong>導師提醒</strong>: 路由是網路的靈魂。理解了 VPC 的隔離邏輯，你就掌握了雲端資安的核心。
+</small></p>
+
+</body>
+</html>

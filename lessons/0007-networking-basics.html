@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0007 — 網路基礎：從家裡到全世界</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>0007 — 網路基礎：從家裡到全世界</h1>
+<p><strong>對應模組</strong>: Module 4 — 網路基礎知識<br>
+<strong>預計時間</strong>: 20 分鐘</p>
+
+<div class="analogy">
+想像網路就像一個巨大的<strong>「全球快遞系統」</strong>：<br><br>
+<strong>區域網路 (LAN)</strong> 就像是你在<strong>自家公司內部</strong>傳遞文件。你只需要知道對方的分機號碼，文件就在走廊間傳遞，速度極快，且不需要經過外部快遞公司。<br><br>
+<strong>廣域網路 (WAN)</strong> 就像是<strong>城市與城市之間</strong>的物流。如果你要寄文件到另一個城市的分公司，你必須將文件交給專業的快遞公司 (如 DHL 或 FedEx)，他們會負責跨越長距離將資料送達。<br><br>
+<strong>網際網路 (Internet)</strong> 則是全球最大的<strong>「快遞聯盟」</strong>。它將全世界所有的小快遞系統 (LAN/WAN) 連結在一起，讓你在台北可以瞬間傳資料到紐約。
+</div>
+
+<h2>1. 網路類型：規模決定一切</h2>
+<p>根據覆蓋範圍的不同，網路分為三大類：</p>
+
+<table>
+<thead><tr><th>類型</th><th>全稱</th><th>覆蓋範圍</th><th>特點</th></tr></thead>
+<tbody>
+<tr><td><strong>LAN</strong></td><td>Local Area Network<br>(區域網路)</td><td>單一辦公室、家裡、校園</td><td>高速、低延遲、私有管理。</td></tr>
+<tr><td><strong>WAN</strong></td><td>Wide Area Network<br>(廣域網路)</td><td>城市之間、國家之間</td><td>速度較慢、高延遲、通常由電信商 (ISP) 管理。</td></tr>
+<tr><td><strong>Internet</strong></td><td>The Internet<br>(網際網路)</td><td>全球</td><td>由無數個 LAN 和 WAN 組成的網路之網路。</td></tr>
+</tbody>
+</table>
+
+<h2>2. 網路設備：誰在負責搬運資料？</h2>
+<p>資料在網路中傳輸時，需要經過不同的設備來引導方向。請看這三個核心角色：</p>
+
+<div class="vocab">
+<span class="vocab-term">集線器 (Hub)</span><br>
+<span class="vocab-en">Hub</span><br>
+最簡單但也最「笨」的設備。它收到資料後，會<strong>直接複製給所有連接的設備</strong> (廣播)。這會造成嚴重的網路擁堵 $\rightarrow$ 現代網路幾乎已不再使用。
+</div>
+
+<div class="vocab">
+<span class="vocab-term">交換器 (Switch)</span><br>
+<span class="vocab-en">Switch</span><br>
+聰明的區域網路管家。它能記錄每個設備的 <strong>MAC 地址</strong>，知道資料應該精準地送到哪台電腦 $\rightarrow$ 它是 <strong>LAN 的核心</strong>。
+</div>
+
+<div class="vocab">
+<span class="vocab-term">路由器 (Router)</strong><br>
+<span class="vocab-en">Router</span><br>
+跨網路的導航員。它的工作是<strong>將資料從一個網路 (例如你的 LAN) 傳送到另一個網路 (例如 Internet)</strong> $\rightarrow$ 它是 <strong>LAN 與 WAN 之間的閘道</strong>。
+</div>
+
+<div class="tip">
+<strong>關鍵洞察</strong>: 你家裡的「Wi-Fi 分享器」其實是一個 <strong>3-in-1 設備</strong>：它同時包含了 <strong>路由器 (Router) + 交換器 (Switch) + 無線存取點 (AP)</strong>。這就是為什麼它可以讓你連上網路，又能讓家裡多台設備互相溝通。
+</div>
+
+<h2>3. 資料傳輸的邏輯：封包 (Packet)</h2>
+<p>資料在網路中不是像水流一樣流動，而是被切成許多個<strong>「小封包」 (Packet)</strong>。每個封包就像一封信，包含：</p>
+<ul>
+  <li><strong>寄件人地址</strong> (Source IP)</li>
+  <li><strong>收件人地址</strong> (Destination IP)</li>
+  <li><strong>內容</strong> (Data)</li>
+</ul>
+<p>路由器會查看這些地址，然後決定將封包交給下一個最快、最正確的路徑。這就是所謂的 <strong>「路由 (Routing)」</strong>。</p>
+
+<div class="self-check">
+<strong>反向驗證時間</strong><br>
+請試著回答以下問題：
+<ol>
+  <li>如果我想在辦公室內部讓兩台電腦互相傳檔案，不需要經過外部網路，我應該使用什麼設備 (Hub/Switch/Router)？為什麼？</li>
+  <li>路由器 (Router) 和 交換器 (Switch) 的最核心區別是什麼？（試著用「房間」與「城市」的類比來回答）</li>
+  <li>為什麼集線器 (Hub) 在現代網路中被淘汰了？</li>
+</ol>
+把你的答案傳給我，確認理解後，我們將進入 Module 4 的第二課：<strong>網路拓樸與實作基礎</strong>！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0007-networking-basics.html">⬅ 上一課</a>
+<a href="0008-network-topology.html">⬇ 下一課(網路拓樸)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 4 前半段<br>
+💬 <strong>導師提醒</strong>: 網路設備的區分是所有網路認證 (如 CCNA) 的起點，請務必搞清楚。
+</small></p>
+
+</body>
+</html>

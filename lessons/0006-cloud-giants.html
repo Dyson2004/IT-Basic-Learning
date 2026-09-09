@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0006 — 三大雲端巨頭：AWS, Azure, GCP 的定位差異</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<h1>0006 — 三大雲端巨頭：AWS, Azure, GCP 的定位差異</h1>
+<p><strong>對應模組</strong>: Module 3 — 資料中心與雲端運算<br>
+<strong>預計時間</strong>: 15 分鐘</p>
+
+<div class="analogy">
+想像你要選擇一個<strong>「城市」</strong>定居：<br><br>
+<strong>AWS</strong> 就像是<strong>紐約</strong>：它是最早開發的，規模最大，什麼都有，無論你想要什麼樣的稀奇古怪的工具，這裡一定有。但因為太大了，導航（控制台）有時候會讓你感到迷路。<br><br>
+<strong>Azure</strong> 就像是<strong>華盛頓</strong>：它是政府與大型企業的聚集地。如果你已經在用微軟的 Office、Windows 或 Active Directory，住在這裡會感到極其親切，所有東西都整合得非常好。<br><br>
+<strong>GCP</strong> 就像是<strong>矽谷</strong>：它充滿了最前衛的技術。雖然城市規模沒有紐約大，但在 AI、大數據分析和容器化 (Kubernetes) 方面，它是全世界最頂尖的。
+</div>
+
+<h2>三大巨頭的基因分析</h2>
+<p>雖然三家提供的基本服務 (VM, VPC, Storage) 幾乎一樣，但他們的強項不同：</p>
+
+<table>
+<thead><tr><th>供應商</th><th>核心基因</th><th>最強項</th><th>適合對象</th></tr></thead>
+<tbody>
+<tr><td><strong>AWS</strong></td><td>電商 $\rightarrow$ 基礎設施</td><td>服務最完整、市場佔有率最高、文件最豐富。</td><td>追求穩定、需要最多功能選項的企業。</td></tr>
+<tr><td><strong>Azure</strong></td><td>作業系統 $\rightarrow$ 企業軟體</td><td>與微軟生態 (AD, .NET, SQL Server) 深度整合。</td><td>深耕微軟生態的企業用戶。</td></tr>
+<tr><td><strong>GCP</strong></td><td>搜尋 $\rightarrow$ 數據/AI</td><td>資料分析 (BigQuery)、機器學習 (TensorFlow)、K8s。</td><td>數據驅動、AI 優先、追求開發效率的團隊。</td></tr>
+</tbody>
+</table>
+
+<div class="tip">
+<strong>為什麼我們選擇 GCP 實作？</strong><br>
+除了 \$300 抵用金外，GCP 的控制台設計較為現代且直觀，對於初學者來說，學習曲線比 AWS 更平緩。此外，學習 GCP 能讓您更接近現代雲端原生 (Cloud Native) 的設計理念。
+</div>
+
+<h2>如何選擇正確的雲端平台？</h2>
+<p>在現實世界中，很多公司會採取 <strong>「多雲策略 (Multi-Cloud)」</strong>，即同時使用兩家或三家供應商，以避免被單一供應商綁架 (Vendor Lock-in)。</p>
+<ul>
+  <li><strong>成本導向</strong>：比較不同區域的價格 $\rightarrow$ 選擇最便宜的。</li>
+  <li><strong>技術導向</strong>：需要最強的 AI $\rightarrow$ GCP；需要最強的企業整合 $\rightarrow$ Azure。</li>
+  <li><strong>生態導向</strong>：團隊成員都熟悉 AWS $\rightarrow$ AWS。</li>
+</ul>
+
+<div class="self-check">
+<strong>反向驗證時間</strong><br>
+請試著回答以下問題：
+<ol>
+  <li>如果一家公司已經全公司使用 Windows 伺服器和 Office 365，你認為他們最有可能選擇哪一家雲端供應商？為什麼？</li>
+  <li>如果你想開發一個需要處理海量數據分析且包含 AI 模型預測的應用程式，哪一家供應商會是你的首選？為什麼？</li>
+  <li>所謂的「多雲策略 (Multi-Cloud)」是指什麼？為什麼公司要這麼做？</li>
+</ol>
+把你的答案傳給我。通過後，我們將正式結束 Module 3，進入 <strong>Module 4：網路基礎知識 (LAN/WAN/Router)</strong> —— 這將是整個 IT 學習中最關鍵的基礎！
+</div>
+
+<div class="lesson-nav">
+<a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
+<a href="0006-cloud-giants.html">⬅ 上一課</a>
+<a href="0007-networking-basics.html">⬇ 下一課(網路基礎)</a>
+</div>
+
+<hr>
+<p><small>
+📚 <strong>主要來源</strong>: <a href="https://www.youtube.com/watch?v=4m9j6hlbf4g">freeCodeCamp IT Fundamentals Course</a> — Module 3 後段<br>
+💬 <strong>導師提醒</strong>: 不要死背功能，要理解每家公司的「基因」。這會幫助你在未來面對複雜的架構設計時做出正確判斷。
+</small></p>
+
+</body>
+</html>
