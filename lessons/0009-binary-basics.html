@@ -38,7 +38,7 @@
   <li><strong>Byte (字節)</strong>: 8 個 Bit 組合成一個 Byte。</li>
 </ul>
 
-<h2>2. 核心技能：二進位 $\leftrightarrow$ 十進位轉換</h2>
+<h2>2. 核心技能：二進位 ↔ 十進位轉換</h2>
 <p>要理解 IP 位址，你必須先掌握這個「權值表」。一個 Byte (8 bits) 的權值如下：</p>
 
 <table class="binary-table">
@@ -53,18 +53,18 @@
 
 <div class="calc-box">
 <strong>計算範例：上面的二進位 <code>01001010</code> 是多少？</strong><br>
-方法：將狀態為 「1」 的權值全部加起來 $\rightarrow$<br>
-(0 $\times$ 128) + (<strong>1 $\times$ 64</strong>) + (0 $\times$ 32) + (0 $\times$ 16) + (<strong>1 $\times$ 8</strong>) + (0 $\times$ 4) + (<strong>1 $\times$ 2</strong>) + (0 $\times$ 1) = <br>
+方法：將狀態為 「1」 的權值全部加起來 →<br>
+(0 × 128) + (<strong>1 × 64</strong>) + (0 × 32) + (0 × 16) + (<strong>1 × 8</strong>) + (0 × 4) + (<strong>1 × 2</strong>) + (0 × 1) = <br>
 <strong>64 + 8 + 2 = 74</strong>
 </div>
 
 <h2>3. 為什麼 IP 位址要這樣設計？</h2>
 <p>一個 IPv4 位址是由 4 個部分組成（稱為 Octet，八位組），每個部分都是 8 個 bits。</p>
 <p>例如 <code>192.168.1.1</code>：<br>
-- <strong>192</strong> $\rightarrow$ <code>11000000</code> (128 + 64)<br>
-- <strong>168</strong> $\rightarrow$ <code>10101000</code> (128 + 32 + 8)<br>
-- <strong>1</strong> $\rightarrow$ <code>00000001</code> (1)<br>
-- <strong>1</strong> $\rightarrow$ <code>00000001</code> (1)</p>
+- <strong>192</strong> → <code>11000000</code> (128 + 64)<br>
+- <strong>168</strong> → <code>10101000</code> (128 + 32 + 8)<br>
+- <strong>1</strong> → <code>00000001</code> (1)<br>
+- <strong>1</strong> → <code>00000001</code> (1)</p>
 
 <div class="warning">
 <strong>導師提醒</strong>: 不要試圖死背 IP 轉換表！請練習上面的「權值相加法」。這是後續學習「子網路劃分 (Subnetting)」的唯一基礎，如果這裡不熟，後面會非常痛苦。

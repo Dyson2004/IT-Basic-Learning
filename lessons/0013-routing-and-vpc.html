@@ -34,15 +34,15 @@
 </div>
 
 <h2>1. 預設閘道 (Default Gateway)</h2>
-<p>當一台電腦想要發送資料到「自己社區 (Subnet) 之外」的地方時，它不知道路怎麼走。這時候，它會將封包交給一個專門的出口 $\rightarrow$ <strong>預設閘道</strong>。</p>
+<p>當一台電腦想要發送資料到「自己社區 (Subnet) 之外」的地方時，它不知道路怎麼走。這時候，它會將封包交給一個專門的出口 → <strong>預設閘道</strong>。</p>
 <p>在現實中，預設閘道通常就是您家裡的 <strong>路由器 (Router)</strong>。</p>
 
 <h2>2. 路由表 (Routing Table)</h2>
 <p>路由器內部有一張表，記錄了所有目的地的路徑。它的運作邏輯非常簡單：<strong>「最精準匹配原則 (Longest Prefix Match)」</strong>。</p>
 <div class="calc-box">
 <strong>路由表範例：</strong><br>
-- 目的地 <code>192.168.1.0/24</code> $\rightarrow$ 走本地接口 (直接送達)<br>
-- 目的地 <code>0.0.0.0/0</code> (代表全世界) $\rightarrow$ 走 <strong>Internet Gateway (IGW)</strong>
+- 目的地 <code>192.168.1.0/24</code> → 走本地接口 (直接送達)<br>
+- 目的地 <code>0.0.0.0/0</code> (代表全世界) → 走 <strong>Internet Gateway (IGW)</strong>
 </div>
 
 <h2>3. VPC (Virtual Private Cloud)</h2>
@@ -62,7 +62,7 @@
     - 設備僅有私有 IP<br>
     - <strong>用途</strong>: Database, Backend API
   </div>
-  <div class="route-arrow">$\updownarrow$</div>
+  <div class="route-arrow">↕</div>
   <div style="text-align: center;"><strong>路由表 (Routing Table) 管理流量方向</strong></div>
 </div>
 

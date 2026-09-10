@@ -30,10 +30,10 @@
 <div class="analogy">
 想像你在劃分一條<strong>「長長的街道」</strong>。街道總長 256 公尺，你現在要把這條街平均切成 4 個區塊。<br><br>
 你不需要拿尺去量每一公尺，你只需要知道<strong>「每隔 64 公尺」</strong>就有一塊新區塊的開始：<br>
-- 第一區：0m $\rightarrow$ 63m<br>
-- 第二區：64m $\rightarrow$ 127m<br>
-- 第三區：128m $\rightarrow$ 191m<br>
-- 第四區：192m $\rightarrow$ 255m<br><br>
+- 第一區：0m → 63m<br>
+- 第二區：64m → 127m<br>
+- 第三區：128m → 191m<br>
+- 第四區：192m → 255m<br><br>
 在網路中，這個「64」就叫做 <strong>「跳躍間距 (Magic Number)」</strong>。
 </div>
 
@@ -42,9 +42,9 @@
 
 <div class="calc-step">
 <strong>計算方法：</strong><br>
-公式：$256 - \text{遮罩最後一段的數值}$<br><br>
+公式：256 - 遮罩最後一段的數值<br><br>
 以 <code>/26</code> 為例 (遮罩 <code>255.255.255.192</code>)：<br>
-$256 - 192 = \mathbf{64}$ <br>
+256 - 192 = 64 <br>
 <strong>結論</strong>：這個網路每隔 64 個 IP 就會開始一個新子網路。
 </div>
 
@@ -99,10 +99,10 @@ $256 - 192 = \mathbf{64}$ <br>
 <h2>3. 實戰案例：找出特定的 IP 屬於哪個網路？</h2>
 <p>如果有人給你一個 IP <code>192.168.1.100/26</code>，你要如何判斷它在哪個子網路？</p>
 <ol>
-  <li>找出跳躍間距 $\rightarrow$ 64。</li>
-  <li>列出起始點 $\rightarrow$ .0, .64, .128, .192。</li>
-  <li>比對 <code>.100</code> $\rightarrow$ 它在 <code>.64</code> 之後，但在 <code>.128</code> 之前。</li>
-  <li><strong>結論</strong>：它屬於 <strong>Subnet 2</strong> (範圍 .64 $\rightarrow$ .127)。</li>
+  <li>找出跳躍間距 → 64。</li>
+  <li>列出起始點 → .0, .64, .128, .192。</li>
+  <li>比對 <code>.100</code> → 它在 <code>.64</code> 之後，但在 <code>.128</code> 之前。</li>
+  <li><strong>結論</strong>：它屬於 <strong>Subnet 2</strong> (範圍 .64 → .127)。</li>
 </ol>
 
 <div class="self-check">

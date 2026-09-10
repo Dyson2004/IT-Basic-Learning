@@ -38,8 +38,8 @@
 
 <div class="cidr-box">
 <strong>範例：<code>/24</code> 代表什麼？</strong><br>
-代表前 24 個 bit 全是 1 $\rightarrow$ <code>11111111.11111111.11111111.00000000</code><br>
-轉換成十進位就是 $\rightarrow$ <code>255.255.255.0</code>
+代表前 24 個 bit 全是 1 → <code>11111111.11111111.11111111.00000000</code><br>
+轉換成十進位就是 → <code>255.255.255.0</code>
 </div>
 
 <p>如果我們把 <code>/24</code> 變成 <code>/25</code> 呢？<br>
@@ -50,12 +50,12 @@
 <p>每借走一個 bit，你的網路數量就會<strong>翻倍</strong>，而每個網路能容納的主機數量會<strong>減半</strong>。</p>
 
 <table class="binary-table">
-<thead><tr><th>CIDR</th><th>借位數量</th><th>子網路數量 ($2^n$)</th><th>每個子網路的主機數 ($2^h-2$)</th></tr></thead>
+<thead><tr><th>CIDR</th><th>借位數量</th><th>子網路數量 (2ⁿ)</th><th>每個子網路的主機數 (2ʰ-2)</th></tr></thead>
 <tbody>
-<tr><td><code>/24</code></td><td>0</td><td>$2^0 = 1$</td><td>$2^8 - 2 = 254$</td></tr>
-<tr><td><code>/25</code></td><td>1</td><td>$2^1 = 2$</td><td>$2^7 - 2 = 126$</td></tr>
-<tr><td><code>/26</code></td><td>2</td><td>$2^2 = 4$</td><td>$2^6 - 2 = 62$</td></tr>
-<tr><td><code>/27</code></td><td>3</td><td>$2^3 = 8$</td><td>$2^5 - 2 = 30$</td></tr>
+<tr><td><code>/24</code></td><td>0</td><td>2⁰ = 1</td><td>2⁸ - 2 = 254</td></tr>
+<tr><td><code>/25</code></td><td>1</td><td>2¹ = 2</td><td>2⁷ - 2 = 126</td></tr>
+<tr><td><code>/26</code></td><td>2</td><td>2² = 4</td><td>2⁶ - 2 = 62</td></tr>
+<tr><td><code>/27</code></td><td>3</td><td>2³ = 8</td><td>2⁵ - 2 = 30</td></tr>
 </tbody>
 </table>
 
@@ -69,20 +69,20 @@
 
 <div class="formula">
 <strong>步驟 1：算出子網路數量</strong><br>
-公式：$2^{\text{借位數量}}$<br>
-(例如：從 /24 變 /26，借了 2 位 $\rightarrow 2^2 = 4$ 個子網路)
+公式：2^(借位數量)<br>
+(例如：從 /24 變 /26，借了 2 位 → 2² = 4 個子網路)
 </div>
 
 <div class="formula">
 <strong>步驟 2：算出每個子網路的主機容量</strong><br>
-公式：$2^{\text{剩餘 0 的數量}} - 2$<br>
-(例如：/26 剩下 6 個 0 $\rightarrow 2^6 - 2 = 62$ 台主機)
+公式：2^(剩餘 0 的數量) - 2<br>
+(例如：/26 剩下 6 個 0 → 2⁶ - 2 = 62 台主機)
 </div>
 
 <div class="formula">
 <strong>步驟 3：確定「跳躍間距 (Magic Number)」</strong><br>
-公式：$256 - \text{遮罩最後一段的數值}$<br>
-(例如：/26 的遮罩是 255.255.255.192 $\rightarrow 256 - 192 = 64$) <br>
+公式：256 - 遮罩最後一段的數值<br>
+(例如：/26 的遮罩是 255.255.255.192 → 256 - 192 = 64) <br>
 這意味著你的網路位址會是：<code>.0</code>, <code>.64</code>, <code>.128</code>, <code>.192</code>
 </div>
 
@@ -90,9 +90,9 @@
 <strong>反向驗證時間 (初步計算挑戰)</strong><br>
 假設你現在有一個 <code>192.168.1.0/24</code> 的網路，但老闆要求你將其切分為 <strong>4 個子網路</strong>。
 <ol>
-  <li>為了切成 4 個子網路，你需要借走幾個 bit？(提示：$2^n = 4$)</li>
+  <li>為了切成 4 個子網路，你需要借走幾個 bit？(提示：2ⁿ = 4)</li>
   <li>切分後，新的 CIDR 記法應該是多少？(原本 /24 + 借走的 bits)</li>
-  <li>每個新的子網路中，最多可以容納多少台主機？(請使用公式 $2^h - 2$)</li>
+  <li>每個新的子網路中，最多可以容納多少台主機？(請使用公式 2ʰ - 2)</li>
 </ol>
 <strong>請慢慢計算，寫出過程。</strong> 這堂課如果能弄懂，你就已經超越了 80% 的 IT 初學者！
 </div>

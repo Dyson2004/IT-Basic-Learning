@@ -40,12 +40,12 @@
 
 <div class="step-card">
   <span class="step-number">1</span> <strong>進入 VPC 頁面</strong><br>
-  登入 GCP Console $\rightarrow$ 搜尋欄輸入 <span class="gcp-path">VPC network</span> $\rightarrow$ 點擊 <strong>「VPC 網路」</strong>。
+  登入 GCP Console → 搜尋欄輸入 <span class="gcp-path">VPC network</span> → 點擊 <strong>「VPC 網路」</strong>。
 </div>
 
 <div class="step-card">
   <span class="step-number">2</span> <strong>建立 VPC</strong><br>
-  點擊 <strong>「建立 VPC 網路」</strong> $\rightarrow$ 名稱填入 <code>it-study-vpc</code> $\rightarrow$ <strong>子網路模式</strong> 選擇 <strong>「自定義」</strong>。
+  點擊 <strong>「建立 VPC 網路」</strong> → 名稱填入 <code>it-study-vpc</code> → <strong>子網路模式</strong> 選擇 <strong>「自定義」</strong>。
 </div>
 
 <div class="step-card">
@@ -60,12 +60,12 @@
 
 <div class="step-card">
   <span class="step-number">4</span> <strong>設定防火牆 (開門)</strong><br>
-  目前 VPC 是封閉的，我們需要開門讓流量進入。前往 <span class="gcp-path">VPC network</span> $\rightarrow$ <strong>「防火牆」</strong> $\rightarrow$ <strong>「建立防火牆規則」</strong>：
+  目前 VPC 是封閉的，我們需要開門讓流量進入。前往 <span class="gcp-path">VPC network</span> → <strong>「防火牆」</strong> → <strong>「建立防火牆規則」</strong>：
   <ul>
     <li><strong>名稱</strong>: <code>allow-http-ssh</code></li>
     <li><strong>目標</strong>: 選擇 <strong>「網路中的所有執行個體」</strong></li>
     <li><strong>來源 IPv4 範圍</strong>: <code>0.0.0.0/0</code> (代表允許全世界)</li>
-    <li><strong>通訊協定與連接埠</strong>: 勾選 <strong>TCP</strong> $\rightarrow$ 輸入 <code>80, 22</code> (HTTP 與 SSH)</li>
+    <li><strong>通訊協定與連接埠</strong>: 勾選 <strong>TCP</strong> → 輸入 <code>80, 22</code> (HTTP 與 SSH)</li>
   </ul>
 </div>
 
@@ -92,12 +92,12 @@
 <a href="../index.html">🏠 首頁</a>
 <a href="../reference/0001-it-fundamentals-glossary.html">📚 本課詞彙表</a>
 <a href="0013-routing-and-vpc.html">⬅ 上一課</a>
-<a href="#">⬇ 下一課(待解鎖)</a>
+<span style="color:#9ca3af;cursor:default;">⬇ 課程結束</span>
 </div>
 
 <hr>
 <p><small>
-📚 <strong>主要來源</strong>: Google Cloud Platform Official Documentation $\rightarrow$ VPC Networking<br>
+📚 <strong>主要來源</strong>: Google Cloud Platform Official Documentation → VPC Networking<br>
 💬 <strong>導師提醒</strong>: 實作是最好的學習。不要怕按錯，只要不建立昂貴的資源 (如超大型 VM)，建立 VPC 是免費的。
 </small></p>
 

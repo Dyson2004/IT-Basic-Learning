@@ -21,9 +21,9 @@
 
 <div class="analogy">
 想像你在佈置一間<strong>「大型展覽會」</strong>的通訊線路：<br><br>
-如果你讓所有人排成一排，一個人傳給下一個人，只要中間有人打瞌睡，後面的全部收不到訊息 $\rightarrow$ 這是<strong>總線/環狀</strong>。<br><br>
-如果你讓所有人全部連到中間的一個超級控制台，只要控制台在，大家都能溝通 $\rightarrow$ 這是<strong>星狀</strong>。<br><br>
-如果你讓每個人都跟其他所有人連一條線，就算一半的線斷了，大家依然能找到路徑傳訊息 $\rightarrow$ 這是<strong>網狀</strong>。
+如果你讓所有人排成一排，一個人傳給下一個人，只要中間有人打瞌睡，後面的全部收不到訊息 → 這是<strong>總線/環狀</strong>。<br><br>
+如果你讓所有人全部連到中間的一個超級控制台，只要控制台在，大家都能溝通 → 這是<strong>星狀</strong>。<br><br>
+如果你讓每個人都跟其他所有人連一條線，就算一半的線斷了，大家依然能找到路徑傳訊息 → 這是<strong>網狀</strong>。
 </div>
 
 <h2>1. 常見的網路拓樸結構</h2>
@@ -32,10 +32,10 @@
 <table>
 <thead><tr><th>拓樸類型</th><th>結構特徵</th><th>優點</th><th>缺點</th></tr></thead>
 <tbody>
-<tr><td><strong>星狀 (Star)</strong></td><td>所有設備連到中心 Switch</td><td>管理簡單、單機損壞不影響他人</td><td>中心 Switch 壞了 $\rightarrow$ 全網癱瘓</td></tr>
-<tr><td><strong>環狀 (Ring)</strong></td><td>設備環環相扣，形成一個圈</td><td>傳輸路徑固定，不會碰撞</td><td>其中一環斷掉 $\rightarrow$ 整圈中斷</td></tr>
+<tr><td><strong>星狀 (Star)</strong></td><td>所有設備連到中心 Switch</td><td>管理簡單、單機損壞不影響他人</td><td>中心 Switch 壞了 → 全網癱瘓</td></tr>
+<tr><td><strong>環狀 (Ring)</strong></td><td>設備環環相扣，形成一個圈</td><td>傳輸路徑固定，不會碰撞</td><td>其中一環斷掉 → 整圈中斷</td></tr>
 <tr><td><strong>網狀 (Mesh)</strong></td><td>設備之間多重互連</td><td><strong>極高可靠性</strong>，有多條路徑</td><td>線路極多，成本極高，配置複雜</td></tr>
-<tr><td><strong>總線狀 (Bus)</strong></td><td>所有設備共用一條主幹線</td><td>線路最少，安裝極快</td><td>主幹斷裂 $\rightarrow$ 全網崩潰</td></tr>
+<tr><td><strong>總線狀 (Bus)</strong></td><td>所有設備共用一條主幹線</td><td>線路最少，安裝極快</td><td>主幹斷裂 → 全網崩潰</td></tr>
 </tbody>
 </table>
 
@@ -47,7 +47,7 @@
 <p>在設計網路時，工程師最害怕的就是 <strong>「單點故障 (SPOF)」</strong>。</p>
 <p>想像你的星狀網路中，那個中心 Switch 就是單點故障。如果它突然燒掉了，即便你有 100 台頂級伺服器，它們也無法溝通。這就是為什麼在上一課我們提到伺服器需要「備援」，而在網路層級，我們需要 <strong>「冗餘 (Redundancy)」</strong>。</p>
 
-<h2>3. 如何解決？ $\rightarrow$ 引入冗餘 (Redundancy)</h2>
+<h2>3. 如何解決？ → 引入冗餘 (Redundancy)</h2>
 <p>為了避免 SPOF，我們會採取以下策略：</p>
 <ul>
   <li><strong>雙上行 (Dual-homing)</strong>：一台伺服器插兩條線到兩個不同的 Switch。</li>
