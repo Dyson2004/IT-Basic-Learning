@@ -203,3 +203,142 @@ tr:nth-child(even) { background: var(--bg-alt); }
   .lesson-nav, a[href]::after { content: ""; }
   .tip, .warning, .danger, .analogy, .self-check { break-inside: avoid; }
 }
+
+/* ========================
+   首頁佈局 (index.html)
+   ======================== */
+.index-page {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --border: #e2e8f0;
+  --radius: 12px;
+}
+.index-page body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 32px 16px;
+}
+.index-page .container { max-width: 900px; margin: 0 auto; }
+.index-page header {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+.index-page h1 { margin: 0 0 12px 0; font-size: 2rem; color: var(--primary); }
+.index-page p { color: var(--muted); margin: 0; font-size: 1.05rem; }
+.index-page .section-title {
+  font-size: 1.25rem;
+  margin: 32px 0 16px 0;
+  font-weight: 700;
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+}
+.index-page .lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.index-page .lesson-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.index-page .lesson-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+  border-color: var(--primary);
+}
+.index-page .lesson-num {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.index-page .lesson-title { font-size: 1rem; font-weight: 600; margin: 0; }
+
+/* ========================
+   路線圖佈局 (roadmap.html)
+   ======================== */
+.roadmap-page {
+  --bg-color: #ffffff;
+  --text-color: #333;
+  --primary-color: #2563eb;
+  --accent-color: #f59e0b;
+  --danger-color: #ef4444;
+  --success-color: #10b981;
+  --border-color: #e5e7eb;
+}
+.roadmap-page body {
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.roadmap-page .roadmap-container { position: relative; margin-top: 2rem; }
+.roadmap-page .day-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 120px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+.roadmap-page .day-row:hover { background-color: #f9fafb; }
+.roadmap-page .day-label { font-weight: bold; color: #6b7280; }
+.roadmap-page .module-tag {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  color: white;
+}
+.roadmap-page .diff-low { background-color: var(--success-color); }
+.roadmap-page .diff-mid { background-color: var(--accent-color); }
+.roadmap-page .diff-high { background-color: var(--danger-color); }
+.roadmap-page .current-marker {
+  background-color: #dbeafe;
+  border-left: 4px solid var(--primary-color);
+  font-weight: bold;
+}
+.roadmap-page .legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f3f4f6;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.roadmap-page .legend-item { display: flex; align-items: center; gap: 0.5rem; }
+.roadmap-page .dot { width: 12px; height: 12px; border-radius: 50%; }
+.roadmap-page .time-estimate { text-align: right; color: #9ca3af; font-size: 0.85rem; }
+.roadmap-page .mentor-note {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 8px 8px 0;
+}
